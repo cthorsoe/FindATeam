@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" routerLink="/">Find A Team</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item active">
+          <a class="nav-link"routerLinkActive="active" routerLink="/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link"routerLinkActive="active" routerLink="/app/teams">Teams</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"routerLinkActive="active" routerLink="/app/players">Players</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"routerLinkActive="active" routerLink="/app/list-player">List yourself</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"routerLinkActive="active" routerLink="/app/list-team">List your team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"routerLinkActive="active" routerLink="/app/my-teams">My teams</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item" *ngIf="!isLoggedIn">
+              <a class="nav-link"routerLinkActive="active" routerLink="./login">Login</a>
+            </li>
+        <li class="nav-item" *ngIf="!isLoggedIn;else dropdownDiv">
+          <a class="nav-link"routerLinkActive="active" routerLink="./register">Register</a>
+        </li>
+        <ng-template #dropdownDiv>
+          <li class="nav-item dropdown" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/app/profile">My Profile</a>
+              <a class="dropdown-item" (click)="userLogout()">Logout</a>
+            </div>
+          </li>
+        </ng-template>
+        
+      </ul>
+    </div>
+  </nav>
+  <main role="main" class="container">
+      <router-outlet></router-outlet>
+  </main>

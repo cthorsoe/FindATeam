@@ -1,20 +1,76 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { FormBuilder } from '@angular/forms';
+import { UsersEpic } from './redux/users.epic';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
+import { createLogger } from 'redux-logger';
+import { IAppState, rootReducer } from './store/store';
+import { NgRedux, DevToolsExtension, NgReduxModule } from '@angular-redux/store';
+import {HttpClientModule } from '@angular/common/http';
+import { UsersService } from './redux/users.service';
+import { UsersActions } from './redux/users.actions';
+import { PortalComponent } from './portal/portal.component';
+import { FindTeamComponent } from './find-team/find-team.component';
+import { FindPlayerComponent } from './find-player/find-player.component';
+import { ListPlayerComponent } from './list-player/list-player.component';
+import { ListTeamComponent } from './list-team/list-team.component';
+import { LoginComponent } from './login/login.component';
+import { MyTeamsComponent } from './my-teams/my-teams.component';
+import { FilterPlayersPipe } from './pipes/filter-players.pipe';
+import { AgePipe } from './pipes/age.pipe';
+import { MomentModule } from 'angular2-moment/moment.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegisterComponent,
+    HomeComponent,
+    PortalComponent,
+    FindTeamComponent,
+    FindPlayerComponent,
+    ListPlayerComponent,
+    ListTeamComponent,
+    LoginComponent,
+    MyTeamsComponent,
+    FilterPlayersPipe,
+    AgePipe
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgReduxModule,
+    FormsModule,
+    MomentModule
   ],
-  providers: [],
+  providers: [UsersEpic, UsersService, UsersActions],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private ngRedux: NgRedux<IAppState>, private devTool: DevToolsExtension, private usersEpic: UsersEpic){
+    const rootEpic = combineEpics(
+      this.usersEpic.getUsers,
+      this.usersEpic.deleteUser,
+      this.usersEpic.editUser,
+      this.usersEpic.createUser,
+      this.usersEpic.userLogin
+    );
+
+    const middleware = [
+      createEpicMiddleware(rootEpic), createLogger({ level: 'info', collapsed: true })
+    ];
+
+    this.ngRedux.configureStore(
+      rootReducer,
+      {}, middleware, [ devTool.isEnabled() ? devTool.enhancer() : f => f]);
+  }
+}

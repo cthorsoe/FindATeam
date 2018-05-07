@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col col-md-6 col-lg-4">
+        <form class="form-signin" id="frmRegisterUser" [formGroup]="registerUserForm" (submit)="registerUserFormSubmit(registerUserForm, $event)" novalidate>
+            <h1 class="h3 mb-3 font-weight-normal text-center">Register account</h1>
+
+            <label for="txtRegisterFirstName" class="sr-only">First name</label>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerUserForm.controls.firstname.errors?.required && registerUserForm.controls.firstname.touched">
+                You must fill out your first name
+            </div>
+            <input type="text" id="txtRegisterFirstName" formControlName="firstname" class="form-control" placeholder="First name" autofocus="">
+
+            
+            <label for="txtRegisterLastName" class="sr-only">Last name</label>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerUserForm.controls.lastname.errors?.required && registerUserForm.controls.lastname.touched">
+                You must fill out your last name
+            </div>
+            <input type="text" id="txtRegisterLastName" formControlName="lastname" class="form-control" placeholder="Last name">
+
+            
+            <label for="txtRegisterUserName" class="sr-only">User name</label>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerUserForm.controls.username.errors?.required && registerUserForm.controls.username.touched">
+                You must fill out your user name
+            </div>
+            <input type="text" id="txtRegisterUserName" formControlName="username" class="form-control" placeholder="User name">
+            
+            
+            <label for="txtRegisterEmail" class="sr-only">Email address</label>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerUserForm.controls.email.errors?.required && registerUserForm.controls.email.touched">
+                You must fill out your email address
+            </div>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="!registerUserForm.controls.email.errors?.required && registerUserForm.controls.email.errors?.email && registerUserForm.controls.email.touched">
+                You must fill out a valid email address
+            </div>
+            <input type="email" id="txtRegisterEmail" formControlName="email" class="form-control" placeholder="Email address">
+            
+            
+            <label for="txtRegisterDate" class="sr-only">Email address</label>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerUserForm.controls.dateofbirth.errors?.required && registerUserForm.controls.dateofbirth.touched">
+                You must fill out your date of birth
+            </div>
+            <input type="date" id="txtRegisterDate" formControlName="dateofbirth" class="form-control" placeholder="Date of birth">
+            
+            
+            <label for="txtRegisterPassword" class="sr-only">Password</label>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerUserForm.controls.password.errors?.required && registerUserForm.controls.password.touched">
+                You must fill out your password
+            </div>
+            <input type="password" id="txtRegisterPassword" formControlName="password" class="form-control" placeholder="Password">
+            
+            
+            <label for="txtRegisterPasswordConfirm" class="sr-only">Password Again</label>
+            <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerUserForm.controls.passwordConfirm.errors?.required && registerUserForm.controls.passwordConfirm.touched">
+                You must fill out your password again
+            </div>
+            <input type="password" id="txtRegisterPasswordConfirm" formControlName="passwordConfirm" class="form-control" placeholder="Password again">
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="registerUserForm.invalid">Sign Up!</button>
+            <p>Already registered? <a routerLink="../login">Click here to login.</a></p>
+          </form>
+    </div>
+</div>
