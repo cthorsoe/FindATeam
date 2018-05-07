@@ -3,9 +3,11 @@ import { combineReducers } from 'redux';
 import { Player } from '../entities/player';
 import { Team } from '../entities/team';
 import { usersReducer } from '../redux/users.reducer';
+import { User } from '../entities/user';
 
 export class UsersState {
- user: Player;
+ user: User;
+ selectedUser: User;
  listedUsers: Player[];
  listedTeams: Team[];
 }

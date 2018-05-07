@@ -2,6 +2,7 @@ import { UsersActions } from './users.actions';
 import { UsersState } from '../store/store';
 import { tassign } from 'tassign';
 import { UsersService } from './users.service';
+import { User } from '../entities/user';
 
 const INITIAL_STATE: UsersState = UsersService.getInitialUsersState();
 
@@ -15,16 +16,26 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
 
     case UsersActions.SUCCESS_LOGIN: // action.payload: Player[]
       console.log('PAYLOAD', action.payload);
-      if(action.payload.length == 1 ){
-        return tassign(state, {user: action.payload})
-      }
-      return state;
+      return tassign(state, {user: action.payload})
+      // return state;
 
     case UsersActions.FAILED_LOGIN: // action.payload: empty
       return state;
     case UsersActions.LOGOUT: // action.payload: empty
       return tassign(state, {user: undefined})
     /* ------------------------------------ USER LOGIN END ------------------------------------ */
+
+    /* ------------------------------------ GET SPECIFIC USER BEGIN ------------------------------------ */
+    case UsersActions.GET_SPECIFIC_USER: // action.payload: empty
+      return state;
+
+    case UsersActions.SUCCESS_GET_SPECIFIC_USER: // action.payload: User[]
+      console.log('PAYLOAD', action.payload);
+      return tassign(state, {selectedUser: action.payload as User})
+
+    case UsersActions.FAILED_GET_SPECIFIC_USER: // action.payload: empty
+      return state;
+    /* ------------------------------------ GET SPECIFIC USER END ------------------------------------ */
 
     /* ------------------------------------ GET USERS BEGIN ------------------------------------ */
     case UsersActions.GET_USERS: // action.payload: empty

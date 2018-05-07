@@ -10,6 +10,8 @@ import { ListPlayerComponent } from './list-player/list-player.component';
 import { ListTeamComponent } from './list-team/list-team.component';
 import { LoginComponent } from './login/login.component';
 import { MyTeamsComponent } from './my-teams/my-teams.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
     { path: '', redirectTo:'app/home', pathMatch: 'full' },
@@ -20,9 +22,11 @@ const routes: Routes = [
             { path: 'register', component: RegisterComponent},
             { path: 'teams', component: FindTeamComponent},
             { path: 'players', component: FindPlayerComponent},
-            { path: 'list-player', component: ListPlayerComponent},
-            { path: 'list-team', component: ListTeamComponent},
-            { path: 'my-teams', component: MyTeamsComponent},
+            { path: 'profile/:username', component: ProfileComponent},
+            { path: 'list-player', component: ListPlayerComponent, canActivate:[AuthGuardService]},
+            { path: 'list-team', component: ListTeamComponent, canActivate:[AuthGuardService]},
+            { path: 'my-teams', component: MyTeamsComponent, canActivate:[AuthGuardService]},
+            { path: 'my-profile', component: FindPlayerComponent, canActivate:[AuthGuardService]},
           ],
       },
     // { path: 'register', component: RegisterComponent},

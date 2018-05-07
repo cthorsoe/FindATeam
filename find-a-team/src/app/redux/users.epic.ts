@@ -16,8 +16,23 @@ export class UsersEpic implements OnInit {
    ngOnInit(): void {
    }
 
+   getSpecificUser = (action$: ActionsObservable<any>) => {
+      return action$.ofType(UsersActions.GET_SPECIFIC_USER) // Listen for this action
+        .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+            return this.usersService.getUser(payload)
+              .map((result:any) => ({ // when web service responds with success, call this action with payload that came back from webservice
+                type: UsersActions.SUCCESS_GET_SPECIFIC_USER,
+                payload: result
+              })
+            )
+              .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+                type: UsersActions.FAILED_GET_SPECIFIC_USER,
+                payload: error
+            }));
+      });
+   }
+
    getUsers = (action$: ActionsObservable<any>) => {
-    //  console.log('EPIC WAS HIT');
       return action$.ofType(UsersActions.GET_USERS) // Listen for this action
         .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
             return this.usersService.getUsers()
@@ -34,10 +49,9 @@ export class UsersEpic implements OnInit {
    }
 
    userLogin = (action$: ActionsObservable<any>) => {
-    //  console.log('EPIC WAS HIT');
       return action$.ofType(UsersActions.LOGIN) // Listen for this action
         .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
-            return this.usersService.getUsers()
+            return this.usersService.userLogin()
               .map((result:Object) => ({ // when web service responds with success, call this action with payload that came back from webservice
                 type: UsersActions.SUCCESS_LOGIN,
                 payload: result
@@ -50,7 +64,6 @@ export class UsersEpic implements OnInit {
    }
 
    createUser = (action$: ActionsObservable<any>) => {
-    // console.log('EPIC WAS HIT');
       return action$.ofType(UsersActions.CREATE_USER) // Listen for this action
         .mergeMap(({payload: user}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
             return this.usersService.createUser(user)

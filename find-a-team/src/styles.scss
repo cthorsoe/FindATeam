@@ -45,8 +45,19 @@ nav.navbar{
   border-width: 2px; 
 }
 
-.list-card{
+.list-card, .single-card{
   h1,h2,h3,h4,h5,h6,p,span{
     margin: 0;
   }
+}
+
+// .single-card{
+  // img{
+  //   max-width: 302px;
+  // }
+  
+// }
+
+.text-small{
+  font-size: .85rem;
 }

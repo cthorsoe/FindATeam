@@ -4,6 +4,7 @@ import { IAppState } from '../store/store';
 import { UsersActions } from '../redux/users.actions';
 import { Player } from '../entities/player';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-portal',
@@ -15,7 +16,7 @@ export class PortalComponent implements OnInit, OnDestroy {
   isAdmin:boolean;
   user:Player;
   subscription;
-  constructor(private ngRedux: NgRedux<IAppState>, private usersActions: UsersActions, private router: Router) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private usersActions: UsersActions, private router: Router, private authService:AuthService) { }
 
   ngOnInit() {
     this.subscription = this.ngRedux.select(state => state.users).subscribe(data => {
@@ -36,6 +37,7 @@ export class PortalComponent implements OnInit, OnDestroy {
 
   userLogout(){
     console.log('USER LOGOUT');
+    this.authService.logout();
     this.usersActions.userLogout();
     this.router.navigate(['app/home']);
   }

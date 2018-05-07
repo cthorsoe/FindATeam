@@ -17,6 +17,9 @@ export class UsersService {
     userLogin(){
       return this.http.get('http://localhost:3333/user-login');
     }
+    getUser(username:String){
+      return this.http.get('http://localhost:3333/get-user/' + username);
+    }
     getUsers(){
       return this.http.get('http://localhost:3333/get-users');
     }
@@ -39,7 +42,7 @@ export class UsersService {
 
 
    static getInitialUsersState() : UsersState{
-      return { user: undefined, listedUsers:[], listedTeams: [] };
+      return { user: undefined, selectedUser: undefined, listedUsers:[], listedTeams: [] };
    }
 
 

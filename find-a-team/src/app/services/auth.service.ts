@@ -11,14 +11,14 @@ export class AuthService {
   redirectUrl: string;
   constructor() { }
 
-  login(isAdmin:boolean = false): Observable<boolean> {
+  login(isAdmin:boolean = false): void { // Observable<boolean> { // Use oberservable if you are going to call webservice from here.
     // console.log('login should be true now');
-    return Observable.of(true).delay(1000).do(() => {
-      this.isLoggedIn = true;
-      this.isAdmin = isAdmin; 
-      //  localStorage.setItem('FAS-Logged-In', '1');
-      //  localStorage.setItem('FAS-Admin', isAdmin ? '1' : '0');
-    });
+    this.isLoggedIn = true;
+    this.isAdmin = isAdmin; 
+    // return Observable.of(true).delay(1000).do(() => {
+    //   //  localStorage.setItem('FAS-Logged-In', '1');
+    //   //  localStorage.setItem('FAS-Admin', isAdmin ? '1' : '0');
+    // });
   }
  
  logout(): void {

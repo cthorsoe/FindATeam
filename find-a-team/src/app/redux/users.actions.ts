@@ -15,12 +15,13 @@ export class UsersActions {
    static FAILED_LOGIN: string = 'FAILED_LOGIN';
    static LOGOUT: string = 'LOGOUT';
 
-  //  static SUCCESS_LOGOUT: string = 'SUCCESS_LOGOUT';
-  //  static FAILED_LOGOUT: string = 'FAILED_LOGOUT';
+   static GET_SPECIFIC_USER: string = 'GET_SPECIFIC_USER';
+   static SUCCESS_GET_SPECIFIC_USER: string = 'SUCCESS_GET_SPECIFIC_USER';
+   static FAILED_GET_SPECIFIC_USER: string = 'FAILED_GET_SPECIFIC_USER';
 
    static GET_USERS: string = 'GET_USERS';
    static SUCCESS_GET_USERS: string = 'SUCCESS_GET_USERS';
-   static FAILED_GET_USERS: string = 'FAILED_RECEIVED_USERS';
+   static FAILED_GET_USERS: string = 'FAILED_GET_USERS';
    
    static DELETE_USER: string = 'DELETE_USER';
    static SUCCESS_DELETE_USER: string = 'SUCCESS_DELETE_USER';
@@ -33,6 +34,13 @@ export class UsersActions {
    static CREATE_USER: string = 'CREATE_USER';
    static SUCCESS_CREATE_USER: string = 'SUCCESS_CREATE_USER';
    static FAILED_CREATE_USER: string = 'FAILED_CREATE_USER';
+
+  getSpecificUser(username:String){
+    this.ngRedux.dispatch({
+        type:UsersActions.GET_SPECIFIC_USER,
+        payload: username
+    });
+  }
 
   getUsers(){
     this.ngRedux.dispatch({

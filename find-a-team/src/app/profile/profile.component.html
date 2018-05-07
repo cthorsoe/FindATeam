@@ -1,0 +1,27 @@
+<div ng-show="user" class="card single-card mb-4">
+  <!-- <div class="row justify-content-center my-4">
+    <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+      <img class="card-img-top img-fluid rounded-circle" src="assets/images/unknown.png" alt="Card image cap">
+    </div>
+  </div> -->
+  <div class="card-body">
+    <div class="row my-4">
+      <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 text-sm-right text-lg-left ">
+        <img class="card-img-top img-fluid rounded-circle" src="assets/images/unknown.png" alt="Card image cap">
+      </div>
+      <div class="col-12 col-md-8 col-ld-9 col-xl-10">
+        <h5 class="card-title">{{ user.username }}</h5>
+        <p>{{user.firstname}} {{user.lastname}}</p>
+        <p class="text-muted text-small">{{ user.dateofbirth | age }}</p>
+        <p *ngIf="user.role" class="text-muted text-small">Role: {{ user.role }}</p>
+        <hr>
+        <div *ngIf="user.description" class="text-muted">
+          <!-- <strong>Description:</strong><br> -->
+          {{ user.description }}
+        </div>
+      </div>
+    </div>
+    
+    <!-- <p *ngIf="{{user.role != undefined}}" class="text-muted">Role: {{ user.role }}</p> -->
+  </div>
+</div>

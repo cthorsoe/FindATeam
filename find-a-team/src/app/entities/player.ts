@@ -4,8 +4,9 @@ export class Player {
     public lastname:String;
     public username:String;
     public dateofbirth:Date;
-    public email:string;
-    // public phone:string;
+    public email:String;
+    public role?:String;
     public avatar?:String;
+    public phone?:String;
 
 }

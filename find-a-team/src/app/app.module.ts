@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-
+import { AuthGuardService } from './services/auth-guard.service';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
@@ -25,6 +25,9 @@ import { MyTeamsComponent } from './my-teams/my-teams.component';
 import { FilterPlayersPipe } from './pipes/filter-players.pipe';
 import { AgePipe } from './pipes/age.pipe';
 import { MomentModule } from 'angular2-moment/moment.module';
+import { AuthService } from './services/auth.service';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -40,7 +43,9 @@ import { MomentModule } from 'angular2-moment/moment.module';
     LoginComponent,
     MyTeamsComponent,
     FilterPlayersPipe,
-    AgePipe
+    AgePipe,
+    MyProfileComponent,
+    ProfileComponent
     
   ],
   imports: [
@@ -52,12 +57,13 @@ import { MomentModule } from 'angular2-moment/moment.module';
     FormsModule,
     MomentModule
   ],
-  providers: [UsersEpic, UsersService, UsersActions],
+  providers: [AuthGuardService, AuthService, UsersEpic, UsersService, UsersActions],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
   constructor(private ngRedux: NgRedux<IAppState>, private devTool: DevToolsExtension, private usersEpic: UsersEpic){
     const rootEpic = combineEpics(
+      this.usersEpic.getSpecificUser,
       this.usersEpic.getUsers,
       this.usersEpic.deleteUser,
       this.usersEpic.editUser,
