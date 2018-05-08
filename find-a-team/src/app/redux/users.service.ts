@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Player } from '../entities/player';
 import { UsersState } from '../store/store';
 import { Team } from '../entities/team';
+import { User } from '../entities/user';
 
 
 @Injectable()
@@ -38,11 +39,14 @@ export class UsersService {
       // return this.http.get('http://localhost:3333/get-users');
       return this.http.post('http://localhost:3333/create-user', user, {responseType: 'text'});
       
-   }
+    }
+    listUser(user:User){
+      return this.http.post('http://localhost:3333/list-user', user, {responseType: 'text'});
+    }
 
 
    static getInitialUsersState() : UsersState{
-      return { user: undefined, selectedUser: undefined, listedUsers:[], listedTeams: [] };
+    return { teamInvites: 0, user: undefined, selectedUser: undefined, selectedTeam: undefined, listedUsers:[], listedTeams: [] };
    }
 
 

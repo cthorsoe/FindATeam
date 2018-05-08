@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-       <h3>List of Players</h3>
+       <h1>List of players</h1>
        <div class="input-group mb-3">
          <div class="input-group-prepend">
            <span class="input-group-text" id="basic-addon1">
@@ -15,10 +15,13 @@
  <ng-template #playersContainer>
   <div class="row">
     <div class="col col-sm-6 col-md-4 col-xl-3" *ngFor="let player of playerList | filterPlayers: playerSearch">
-      <div *ngIf="player === -1;else playerCard">There are no players matching the criteria.</div>
+      <p *ngIf="player === -1;else playerCard">No matching players found.</p>
       <ng-template #playerCard>
         <div class="card list-card mb-4">
-          <img class="card-img-top" src="assets/images/unknown.png" alt="Card image cap">
+          <img *ngIf="player.avatar;else unknownAvatar" class="card-img-top" src="{{player.avatar}}" alt="{{player.username}} avatar" />
+          <ng-template #unknownAvatar>
+              <img class="card-img-top" src="assets/images/unknown.png" alt="{{player.username}} avatar" />
+          </ng-template>
           <div class="card-body">
             <h5 class="card-title">{{ player.username }}</h5>
             <p>{{player.firstname}} {{player.lastname}}</p>

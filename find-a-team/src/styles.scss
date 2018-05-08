@@ -61,3 +61,33 @@ nav.navbar{
 .text-small{
   font-size: .85rem;
 }
+
+.form-regular{
+  .form-control{
+    margin: .75rem 0;
+  }
+}
+
+.dropdown-team-invites{
+  font-size: .5rem;
+  position: absolute;
+  right: 38px;
+  top: 3px;
+  display: inline-block;
+}
+
+.team-invites{
+  font-size: .5rem;
+  position: relative;
+  right: 33px;
+  top: -15px;
+  display: inline-block;
+}
+
+.link-label{
+  display: block;
+}
+
+.text-muted{
+  color:rgba(255,255,255,0.6) !important;
+}

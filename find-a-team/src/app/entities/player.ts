@@ -1,5 +1,5 @@
 export class Player {
-    // public id:Number;
+    public id:number;
     public firstname:String;
     public lastname:String;
     public username:String;

@@ -97,6 +97,22 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
       return state;
     
     /* ------------------------------------ EDIT USER END ------------------------------------ */
+
+    /* ------------------------------------ CREATE USER BEGIN ------------------------------------ */
+    case UsersActions.LIST_USER: // action.payload: empty
+    return state;
+    
+    case UsersActions.SUCCESS_LIST_USER: // action.payload: User
+      console.log('PAYLOAD', action.payload);
+      index = state.listedUsers.findIndex(x => x.username == action.payload.username);
+      if(index == -1){
+        return tassign(state, {listedUsers: [...state.listedUsers, action.payload]})
+      }
+      return state;
+    
+    case UsersActions.FAILED_LIST_USER: // action.payload: empty
+      return state;
+    /* ------------------------------------ CREATE USER END ------------------------------------ */
     default:
       return state;
  }

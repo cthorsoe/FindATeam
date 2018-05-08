@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../store/store';
 import { Player } from '../entities/player';
+import { User } from '../entities/user';
 
 @Injectable()
 export class UsersActions {
@@ -34,6 +35,10 @@ export class UsersActions {
    static CREATE_USER: string = 'CREATE_USER';
    static SUCCESS_CREATE_USER: string = 'SUCCESS_CREATE_USER';
    static FAILED_CREATE_USER: string = 'FAILED_CREATE_USER';
+   
+   static LIST_USER: string = 'LIST_USER';
+   static SUCCESS_LIST_USER: string = 'SUCCESS_LIST_USER';
+   static FAILED_LIST_USER: string = 'FAILED_LIST_USER';
 
   getSpecificUser(username:String){
     this.ngRedux.dispatch({
@@ -83,5 +88,12 @@ export class UsersActions {
     this.ngRedux.dispatch({
        type: UsersActions.LOGOUT
     });
+  }
+
+  listUser(user: User): void{
+    this.ngRedux.dispatch({
+      type: UsersActions.LIST_USER,
+      payload: user
+   });
   }
 }

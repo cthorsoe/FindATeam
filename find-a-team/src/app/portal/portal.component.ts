@@ -12,6 +12,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./portal.component.scss']
 })
 export class PortalComponent implements OnInit, OnDestroy {
+  teamInvites:number;
   isLoggedIn:boolean;
   isAdmin:boolean;
   user:Player;
@@ -20,11 +21,12 @@ export class PortalComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.ngRedux.select(state => state.users).subscribe(data => {
+      this.teamInvites = data.teamInvites;
       if(data.user != undefined){
-        // this.user = data.user; // DOESNT UPDATE DATABINDED HTML?
+        this.user = data.user; // DOESNT UPDATE DATABINDED HTML?
         this.isLoggedIn = true;
       }else{
-        // this.user = undefined;
+        this.user = undefined;
         this.isLoggedIn = false;
       }
     });

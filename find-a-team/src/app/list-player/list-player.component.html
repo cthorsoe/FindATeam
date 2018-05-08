@@ -1,3 +1,48 @@
-<p>
-  list-player works!
-</p>
+<h1>List yourself as an available player</h1>
+<h4 class="text-muted">Review the information, and make sure everything is correct.</h4>
+
+<h5 class="text-muted">Username: {{ user.username }}</h5>
+<form class="form-regular" id="frmListPlayer" [formGroup]="listPlayerForm" (submit)="listPlayerFormSubmit(listPlayerForm, $event)" novalidate>
+
+    <input type="hidden" id="txtListUserName" formControlName="username" class="form-control">
+    <label for="txtListFirstName" class="sr-only">First name</label>
+    <div class="alert text-center alert-danger my-0" role="alert" *ngIf="listPlayerForm.controls.firstname.errors?.required && listPlayerForm.controls.firstname.touched">
+        You must fill out your first name
+    </div>
+    <input type="text" id="txtListFirstName" formControlName="firstname" class="form-control" placeholder="First name" autofocus="">
+
+    
+    <label for="txtListLastName" class="sr-only">Last name</label>
+    <div class="alert text-center alert-danger my-0" role="alert" *ngIf="listPlayerForm.controls.lastname.errors?.required && listPlayerForm.controls.lastname.touched">
+        You must fill out your last name
+    </div>
+    <input type="text" id="txtListLastName" formControlName="lastname" class="form-control" placeholder="Last name">
+    
+    
+    <label for="txtListEmail" class="sr-only">Email address</label>
+    <div class="alert text-center alert-danger my-0" role="alert" *ngIf="listPlayerForm.controls.email.errors?.required && listPlayerForm.controls.email.touched">
+        You must fill out your email address
+    </div>
+    <div class="alert text-center alert-danger my-0" role="alert" *ngIf="!listPlayerForm.controls.email.errors?.required && listPlayerForm.controls.email.errors?.email && listPlayerForm.controls.email.touched">
+        You must fill out a valid email address
+    </div>
+    <input type="email" id="txtListEmail" formControlName="email" class="form-control" placeholder="Email address">
+    
+    
+    <label for="txtListDate" class="sr-only">Date of birth</label>
+    <div class="alert text-center alert-danger my-0" role="alert" *ngIf="listPlayerForm.controls.dateofbirth.errors?.required && listPlayerForm.controls.dateofbirth.touched">
+        You must fill out your date of birth
+    </div>
+    <input type="date" id="txtListDate" formControlName="dateofbirth" class="form-control" placeholder="Date of birth">
+    
+    
+    <label for="txtListRole" class="sr-only">Role</label>
+    <input type="text" id="txtListRole" formControlName="role" class="form-control" placeholder="Role">
+    
+    
+    <label for="txtListDescription" class="sr-only">Password Again</label>
+    <textarea id="txtListDescription" formControlName="description" class="form-control" placeholder="Description about yourself...">
+    </textarea>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="listPlayerForm.invalid">List as available!</button>
+  </form>

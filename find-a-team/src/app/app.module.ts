@@ -28,6 +28,9 @@ import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthService } from './services/auth.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ProfileComponent } from './profile/profile.component';
+// import { TeamsEpic } from './redux/teams.epic';
+// import { TeamsService } from './redux/teams.service';
+// import { TeamsActions } from './redux/teams.actions';
 
 
 @NgModule({
@@ -57,6 +60,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     MomentModule
   ],
+  // providers: [AuthGuardService, AuthService, UsersEpic, UsersService, UsersActions, TeamsEpic, TeamsService, TeamsActions],
   providers: [AuthGuardService, AuthService, UsersEpic, UsersService, UsersActions],
   bootstrap: [AppComponent]
 })
@@ -68,7 +72,14 @@ export class AppModule {
       this.usersEpic.deleteUser,
       this.usersEpic.editUser,
       this.usersEpic.createUser,
-      this.usersEpic.userLogin
+      this.usersEpic.userLogin,
+      this.usersEpic.listUser,
+      // this.teamsEpic.getSpecificTeam,
+      // this.teamsEpic.getTeams,
+      // this.teamsEpic.deleteTeam,
+      // this.teamsEpic.editTeam,
+      // this.teamsEpic.createTeam,
+      // this.teamsEpic.listTeam
     );
 
     const middleware = [

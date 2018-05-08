@@ -109,6 +109,21 @@ export class UsersEpic implements OnInit {
             }));
       });
    }
+
+   listUser = (action$: ActionsObservable<any>) => {
+    return action$.ofType(UsersActions.LIST_USER) // Listen for this action
+      .mergeMap(({payload: user}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+          return this.usersService.listUser(user)
+            .map((result:String) => ({ // when web service responds with success, call this action with payload that came back from webservice
+              type: UsersActions.SUCCESS_LIST_USER,
+              payload: user
+            }))
+            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+              type: UsersActions.FAILED_LIST_USER,
+              payload: error
+          }));
+    });
+ }
 }
 
 
