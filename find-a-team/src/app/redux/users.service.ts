@@ -15,14 +15,14 @@ export class UsersService {
     
   }
 
-    userLogin(){
-      return this.http.get('http://localhost:3333/user-login');
+    userLogin(username:String){
+      return this.http.get('http://localhost:3333/user-login/' + username);
     }
     getUser(username:String){
       return this.http.get('http://localhost:3333/get-user/' + username);
     }
     getUsers(){
-      return this.http.get('http://localhost:3333/get-users');
+      return this.http.get('http://localhost:3333/get-listed-users');
     }
     deleteUser(id:String){
       // return this.http.delete('http://angular2api2.azurewebsites.net/api/internships/' + id, {responseType: 'text'});
@@ -46,7 +46,7 @@ export class UsersService {
 
 
    static getInitialUsersState() : UsersState{
-    return { teamInvites: 0, user: undefined, selectedUser: undefined, selectedTeam: undefined, listedUsers:[], listedTeams: [] };
+    return { teamInvites: 0, user: undefined, selectedUser: undefined, listedUsers:[]};
    }
 
 

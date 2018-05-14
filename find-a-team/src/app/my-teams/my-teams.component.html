@@ -1,3 +1,27 @@
-<p>
-  my-teams works!
-</p>
+<div class="row">
+  <div class="col">
+     <h1>My teams</h1>
+  </div>
+</div>
+<div *ngIf="teamList.length == 0; else teamsContainer">You are currently not on any teams.</div>
+<ng-template #teamsContainer>
+<div class="row">
+  <div class="col col-xs-12 col-sm-6 col-md-6 col-xl-4" *ngFor="let team of teamList">
+    <p *ngIf="team === -1;else teamCard">No matching teams found.</p>
+    <ng-template #teamCard>
+      <div class="card list-card mb-4">
+        <img *ngIf="team.avatar;else unknownAvatar" class="card-img-top" src="{{team.avatar}}" alt="{{team.username}} avatar" />
+        <ng-template #unknownAvatar>
+            <img class="card-img-top" src="assets/images/unknown-team.png" alt="{{team.name}} avatar" />
+        </ng-template>
+        <div class="card-body">
+          <h5 class="card-title mb-2">{{ team.name }}</h5>
+          <p><strong>Current Roster:</strong></p>
+          <p class="text-muted" *ngFor="let member of team.members"><a class="regular-link" routerLink="/app/profile/{{member.username}}">{{member.firstname}} '<strong>{{member.username}}</strong>' {{member.lastname}}</a></p>
+          <!-- <a class="btn btn-outline-primary">Profile</a> -->
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+</ng-template>

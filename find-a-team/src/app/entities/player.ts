@@ -5,7 +5,7 @@ export class Player {
     public username:String;
     public dateofbirth:Date;
     public email:String;
-    public role?:String;
+    public playerrole?:String;
     public avatar?:String;
     public phone?:String;
 

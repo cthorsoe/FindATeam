@@ -3,8 +3,10 @@ import { UsersState } from '../store/store';
 import { tassign } from 'tassign';
 import { UsersService } from './users.service';
 import { User } from '../entities/user';
+import { TeamsActions } from './teams.actions';
 
 const INITIAL_STATE: UsersState = UsersService.getInitialUsersState();
+
 
 export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
   let newUsersArray;
@@ -43,6 +45,7 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
 
     case UsersActions.SUCCESS_GET_USERS: // action.payload: Player[]
       console.log('PAYLOAD', action.payload);
+      console.log(action.payload[2].dateofbirth);
       return tassign(state, {listedUsers: action.payload})
 
     case UsersActions.FAILED_GET_USERS: // action.payload: empty

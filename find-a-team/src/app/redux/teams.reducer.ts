@@ -1,12 +1,12 @@
 import { TeamsActions } from './teams.actions';
-import { UsersState } from '../store/store';
+import { TeamsState } from '../store/store';
 import { tassign } from 'tassign';
 import { TeamsService } from './teams.service';
 import { Team } from '../entities/team';
 
-const INITIAL_STATE: UsersState = TeamsService.getInitialUsersState();
+const INITIAL_STATE: TeamsState = TeamsService.getInitialTeamsState();
 
-export function teamsReducer(state: UsersState = INITIAL_STATE, action:any) {
+export function teamsReducer(state: TeamsState = INITIAL_STATE, action:any) {
   let newTeamsArray;
   let index;
   switch (action.type) {
@@ -29,11 +29,23 @@ export function teamsReducer(state: UsersState = INITIAL_STATE, action:any) {
 
     case TeamsActions.SUCCESS_GET_TEAMS: // action.payload: Team[]
       console.log('PAYLOAD', action.payload);
-      return tassign(state, {listedUsers: action.payload})
+      return tassign(state, {listedTeams: action.payload as Team[]})
 
     case TeamsActions.FAILED_GET_TEAMS: // action.payload: empty
       return state;
     /* ------------------------------------ GET TEAMS END ------------------------------------ */
+
+    /* ------------------------------------ GET MY TEAMS BEGIN ------------------------------------ */
+    case TeamsActions.GET_MY_TEAMS: // action.payload: username
+      return state;
+
+    case TeamsActions.SUCCESS_GET_MY_TEAMS: // action.payload: Team[]
+      console.log('PAYLOAD', action.payload);
+      return tassign(state, {teams: action.payload as Team[]})
+
+    case TeamsActions.FAILED_GET_MY_TEAMS: // action.payload: empty
+      return state;
+    /* ------------------------------------ GET  TEAMS END ------------------------------------ */
 
     /* ------------------------------------ CREATE TEAM BEGIN ------------------------------------ */
     case TeamsActions.CREATE_TEAM: // action.payload: empty
@@ -54,7 +66,7 @@ export function teamsReducer(state: UsersState = INITIAL_STATE, action:any) {
 
     case TeamsActions.SUCCESS_DELETE_TEAM: // action.payload: id:number
       console.log('PAYLOAD', action.payload);
-      newTeamsArray = [... state.listedUsers];
+      newTeamsArray = [... state.listedTeams];
       index = newTeamsArray.findIndex(x => x.id == action.payload);
       if(index > -1){
         newTeamsArray.splice(index, 1);
@@ -71,7 +83,7 @@ export function teamsReducer(state: UsersState = INITIAL_STATE, action:any) {
     
     case TeamsActions.SUCCESS_EDIT_TEAM: // action.payload: Team
       console.log('PAYLOAD', action.payload);
-      newTeamsArray = [... state.listedUsers];
+      newTeamsArray = [... state.listedTeams];
       index = newTeamsArray.findIndex(x => x.username == action.payload.username);
       if(index > -1){
         newTeamsArray[index] = action.payload
@@ -90,8 +102,11 @@ export function teamsReducer(state: UsersState = INITIAL_STATE, action:any) {
     
     case TeamsActions.SUCCESS_LIST_TEAM: // action.payload: Team
       console.log('PAYLOAD', action.payload);
-      return tassign(state, {listedTeams: [...state.listedTeams, action.payload]})
-      // return state;
+      index = state.listedTeams.findIndex(x => x.id == action.payload.id);
+      if(index == -1){
+        return tassign(state, {listedTeams: [...state.listedTeams, action.payload]})
+      }
+      return state;
     
     case TeamsActions.FAILED_LIST_TEAM: // action.payload: empty
       return state;

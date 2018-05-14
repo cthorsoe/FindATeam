@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersActions } from './redux/users.actions';
+import { TeamsActions } from './redux/teams.actions';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,11 @@ import { UsersActions } from './redux/users.actions';
 })
 export class AppComponent implements OnInit  {
 
-  constructor (private usersAction: UsersActions){
+  constructor (private usersActions: UsersActions, private teamsActions: TeamsActions){
 
   }
-
   ngOnInit(): void {
-    this.usersAction.getUsers();
+    this.usersActions.getUsers();
+    this.teamsActions.getTeams();
  }
 }

@@ -91,3 +91,9 @@ nav.navbar{
 .text-muted{
   color:rgba(255,255,255,0.6) !important;
 }
+.regular-link{
+  &:hover{
+    text-decoration: none;
+    color:#fd8230;
+  }
+}

@@ -36,7 +36,7 @@ export class ListPlayerComponent implements OnInit {
        username: [this.user.username, Validators.required],
        email: [this.user.email, [Validators.required, Validators.email]],
        dateofbirth: [this.user.dateofbirth, Validators.required],
-       role: [this.user.role],
+       playerrole: [this.user.playerrole],
        description: [this.user.description],
     });
   }

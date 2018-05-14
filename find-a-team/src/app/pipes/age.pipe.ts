@@ -9,7 +9,7 @@ export class AgePipe implements PipeTransform {
 
   	if (!value) return value;
 
-		return moment().diff(value, 'years')+" years old";
+		return moment().diff(value, 'years') + " years old";
   	
   }
 

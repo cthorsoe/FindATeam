@@ -26,6 +26,8 @@
             <h5 class="card-title">{{ player.username }}</h5>
             <p>{{player.firstname}} {{player.lastname}}</p>
             <p class="text-muted">{{ player.dateofbirth | age }}</p>
+            <!-- <p class="text-muted">{{ player.dateofbirth | date:'yyyy-MM-dd' }}</p> -->
+            <!-- <p class="text-muted">{{ player.dateofbirth }}</p> -->
             <a class="btn btn-outline-primary" routerLink="../profile/{{player.username}}">Profile</a>
           </div>
         </div>

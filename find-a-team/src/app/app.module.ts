@@ -65,7 +65,7 @@ import { TeamsActions } from './redux/teams.actions';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(private ngRedux: NgRedux<IAppState>, private devTool: DevToolsExtension, private usersEpic: UsersEpic){
+  constructor(private ngRedux: NgRedux<IAppState>, private devTool: DevToolsExtension, private usersEpic: UsersEpic, private teamsEpic: TeamsEpic){
     const rootEpic = combineEpics(
       this.usersEpic.getSpecificUser,
       this.usersEpic.getUsers,
@@ -74,12 +74,13 @@ export class AppModule {
       this.usersEpic.createUser,
       this.usersEpic.userLogin,
       this.usersEpic.listUser,
-      // this.teamsEpic.getSpecificTeam,
-      // this.teamsEpic.getTeams,
-      // this.teamsEpic.deleteTeam,
-      // this.teamsEpic.editTeam,
-      // this.teamsEpic.createTeam,
-      // this.teamsEpic.listTeam
+      this.teamsEpic.getSpecificTeam,
+      this.teamsEpic.getTeams,
+      this.teamsEpic.getMyTeams,
+      this.teamsEpic.deleteTeam,
+      this.teamsEpic.editTeam,
+      this.teamsEpic.createTeam,
+      this.teamsEpic.listTeam
     );
 
     const middleware = [

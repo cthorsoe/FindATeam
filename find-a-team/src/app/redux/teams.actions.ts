@@ -18,6 +18,10 @@ export class TeamsActions {
    static GET_TEAMS: string = 'GET_TEAMS';
    static SUCCESS_GET_TEAMS: string = 'SUCCESS_GET_TEAMS';
    static FAILED_GET_TEAMS: string = 'FAILED_GET_TEAMS';
+
+   static GET_MY_TEAMS: string = 'GET_MY_TEAMS';
+   static SUCCESS_GET_MY_TEAMS: string = 'SUCCESS_GET_MY_TEAMS';
+   static FAILED_GET_MY_TEAMS: string = 'FAILED_GET_MY_TEAMS';
    
    static DELETE_TEAM: string = 'DELETE_TEAM';
    static SUCCESS_DELETE_TEAM: string = 'SUCCESS_DELETE_TEAM';
@@ -44,7 +48,15 @@ export class TeamsActions {
 
   getTeams(){
     this.ngRedux.dispatch({
-        type:TeamsActions.GET_TEAMS
+      type:TeamsActions.GET_TEAMS
+    });
+  }
+
+  getMyTeams(username:String){
+    console.log('USERNAME', username)
+    this.ngRedux.dispatch({
+      type:TeamsActions.GET_MY_TEAMS,
+      payload: username
     });
   }
 

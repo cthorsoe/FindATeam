@@ -18,6 +18,7 @@ const routes: Routes = [
     { path: '', redirectTo:'app/home', pathMatch: 'full' },
     { path: 'app', component: PortalComponent,
       children: [
+            { path: '', component: HomeComponent},
             { path: 'home', component: HomeComponent},
             { path: 'login', component: LoginComponent},
             { path: 'register', component: RegisterComponent},
