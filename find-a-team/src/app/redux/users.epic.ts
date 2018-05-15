@@ -67,7 +67,7 @@ export class UsersEpic implements OnInit {
    userLogin = (action$: ActionsObservable<any>) => {
       return action$.ofType(UsersActions.LOGIN) // Listen for this action
         .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
-            return this.usersService.userLogin(payload.username)
+            return this.usersService.userLogin(payload)
               .map((result:Object) => ({ // when web service responds with success, call this action with payload that came back from webservice
                 type: UsersActions.SUCCESS_LOGIN,
                 payload: result

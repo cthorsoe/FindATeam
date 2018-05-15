@@ -15,8 +15,9 @@ export class UsersService {
     
   }
 
-    userLogin(username:String){
-      return this.http.get('http://localhost:3333/user-login/' + username);
+    userLogin(loginForm){
+      console.log('loginForm', loginForm);
+      return this.http.post('http://localhost:3333/user-login/', loginForm);
     }
     getUser(username:String){
       return this.http.get('http://localhost:3333/get-user/' + username);
