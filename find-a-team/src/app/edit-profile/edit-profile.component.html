@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col col-md-10 col-xl-8">
+      <form class="form-regular" id="frmRegisterUser" [formGroup]="editUserForm" (submit)="editUserFormSubmit(editUserForm, $event)" novalidate>
+          <h1 class="h3 mb-3 font-weight-normal text-center">Edit profile</h1>
+
+          <label for="txtEditFirstName" class="sr-only">First name</label>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="editUserForm.controls.firstname.errors?.required && editUserForm.controls.firstname.touched">
+              You must fill out your first name
+          </div>
+          <input type="text" id="txtEditFirstName" formControlName="firstname" class="form-control" placeholder="First name" autofocus="">
+
+          
+          <label for="txtEditLastName" class="sr-only">Last name</label>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="editUserForm.controls.lastname.errors?.required && editUserForm.controls.lastname.touched">
+              You must fill out your last name
+          </div>
+          <input type="text" id="txtEditLastName" formControlName="lastname" class="form-control" placeholder="Last name">
+          
+          <label for="txtEditEmail" class="sr-only">Email address</label>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="editUserForm.controls.email.errors?.required && editUserForm.controls.email.touched">
+              You must fill out your email address
+          </div>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="!editUserForm.controls.email.errors?.required && editUserForm.controls.email.errors?.email && editUserForm.controls.email.touched">
+              You must fill out a valid email address
+          </div>
+          <input type="email" id="txtEditEmail" formControlName="email" class="form-control" placeholder="Email address (hidden)">
+          
+          
+          <label for="txtEditDate" class="sr-only">Date of birth</label>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="editUserForm.controls.dateofbirth.errors?.required && editUserForm.controls.dateofbirth.touched">
+              You must fill out your date of birth
+          </div>
+          <input type="date" id="txtEditDate" formControlName="dateofbirth" class="form-control" placeholder="Date of birth">
+
+          <label for="txtEditPlayerrole" class="sr-only">Role</label>
+          <input type="text" id="txtEditPlayerrole" formControlName="playerrole" class="form-control" placeholder="Player role">
+
+          <label for="txtEditPhone" class="sr-only">Phone</label>
+          <input type="text" id="txtEditPhone" formControlName="phone" class="form-control" placeholder="Phone (hidden)">
+
+          <label for="txtEditDescription" class="sr-only">Description</label>
+          <textarea id="txtEditDescription" formControlName="description" class="form-control" placeholder="Description"></textarea>
+
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="editUserForm.invalid">Edit Profile</button>
+          <p>All good? <a class="regular-link" routerLink="../profile/{{user.username}}">Click here to see your profile.</a></p>
+        </form>
+  </div>
+</div>

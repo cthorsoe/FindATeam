@@ -24,13 +24,18 @@ export class UsersService {
     getUsers(){
       return this.http.get('http://localhost:3333/get-listed-users');
     }
+
+    getTeamInvites(username:string){
+      return this.http.get('http://localhost:3333/get-team-invites-count/' + username);
+    }
+
     deleteUser(id:String){
       // return this.http.delete('http://angular2api2.azurewebsites.net/api/internships/' + id, {responseType: 'text'});
       return this.http.delete('http://localhost:3333/delete-user', {responseType: 'text'});
     }
-    editUser(user:Player){
+    editUser(user:User){
       // return this.http.put('http://angular2api2.azurewebsites.net/api/internships/' + user.username, user, {responseType: 'text'});
-      return this.http.put('http://localhost:3333/edit-user', {responseType: 'text'});
+      return this.http.put('http://localhost:3333/edit-user', user, {responseType: 'text'});
     }
     
     createUser(user:Player){

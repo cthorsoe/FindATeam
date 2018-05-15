@@ -31,9 +31,9 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
     case UsersActions.GET_SPECIFIC_USER: // action.payload: empty
       return state;
 
-    case UsersActions.SUCCESS_GET_SPECIFIC_USER: // action.payload: User[]
+    case UsersActions.SUCCESS_GET_SPECIFIC_USER: // action.payload: User
       console.log('PAYLOAD', action.payload);
-      return tassign(state, {selectedUser: action.payload as User})
+      return tassign(state, {selectedUser: action.payload})
 
     case UsersActions.FAILED_GET_SPECIFIC_USER: // action.payload: empty
       return state;
@@ -45,12 +45,24 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
 
     case UsersActions.SUCCESS_GET_USERS: // action.payload: Player[]
       console.log('PAYLOAD', action.payload);
-      console.log(action.payload[2].dateofbirth);
       return tassign(state, {listedUsers: action.payload})
 
     case UsersActions.FAILED_GET_USERS: // action.payload: empty
       return state;
     /* ------------------------------------ GET USERS END ------------------------------------ */
+
+    /* ------------------------------------ GET TEAM INVITES BEGIN ------------------------------------ */
+    case UsersActions.GET_TEAM_INVITES: // action.payload: empty
+      return state;
+
+    case UsersActions.SUCCESS_GET_TEAM_INVITES: // action.payload: Player[]
+      console.log('PAYLOAD', action.payload);
+      console.log(action.payload);
+      return tassign(state, {teamInvites: action.payload.invites})
+
+    case UsersActions.FAILED_GET_TEAM_INVITES: // action.payload: empty
+      return state;
+    /* ------------------------------------ GET TEAM INVITES END ------------------------------------ */
 
     /* ------------------------------------ CREATE USER BEGIN ------------------------------------ */
     case UsersActions.CREATE_USER: // action.payload: empty
@@ -86,15 +98,15 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
     case UsersActions.EDIT_USER: // action.payload: empty
       return state;
     
-    case UsersActions.SUCCESS_EDIT_USER: // action.payload: Player
+    case UsersActions.SUCCESS_EDIT_USER: // action.payload: User
       console.log('PAYLOAD', action.payload);
-      newUsersArray = [... state.listedUsers];
-      index = newUsersArray.findIndex(x => x.username == action.payload.username);
-      if(index > -1){
-        newUsersArray[index] = action.payload
-        return tassign(state, {listedUsers: newUsersArray})
-      }
-      return state;
+      return tassign(state, {user: action.payload})
+
+      // index = newUsersArray.findIndex(x => x.username == action.payload.username);
+      // if(index > -1){
+      //   newUsersArray[index] = action.payload
+      // }
+      // return state;
     
     case UsersActions.FAILED_EDIT_USER: // action.payload: empty
       return state;

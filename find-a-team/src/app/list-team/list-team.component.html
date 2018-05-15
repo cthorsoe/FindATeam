@@ -1,17 +1,21 @@
-<h1>List your team as searching for player(s)</h1>
-<h4 class="text-muted">Select team</h4>
-<select class="form-control" id="selected-team" name="selected-team" [(ngModel)]="selectedTeam" (ngModelChange)="onTeamChanged($event, selectedTeam)">
-  <option *ngFor="let team of teamList" [ngValue]="team">{{team.name}}</option>
-</select>
-<div class="my-3" *ngIf="selectedTeam && selectedTeam != -1">
-  <!-- <h4 class="text-muted">Review the information, and make sure everything is correct.</h4> -->
-  <!-- <form class="form-regular" id="frmListTeam" [formGroup]="listTeamForm" (submit)="listTeamFormSubmit(listTeamForm, $event)" novalidate>
-      <label for="txtTeamName" class="sr-only">Team name</label>
-      <div class="alert text-center alert-danger my-0" role="alert" *ngIf="listTeamForm.controls.name.errors?.required && listTeamForm.controls.name.touched">
-          You must fill out the team name
-      </div>
-      <input type="text" id="txtListName" formControlName="name" class="form-control" placeholder="Team name" autofocus="">
-    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="listTeamForm.invalid">List as available!</button>
-  </form> -->
-  <button class="btn btn-lg btn-primary btn-block" type="button" (click)="listTeam()">List as available!</button>
+<div class="row justify-content-center">
+  <div class="col col-md-10 col-xl-8">
+    <h1>List your team as searching for player(s)</h1>
+    <h4 class="text-muted">Select team</h4>
+    <select class="form-control" id="selected-team" name="selected-team" [(ngModel)]="selectedTeam" (ngModelChange)="onTeamChanged($event, selectedTeam)">
+      <option *ngFor="let team of teamList" [ngValue]="team">{{team.name}}</option>
+    </select>
+    <div class="my-3" *ngIf="selectedTeam && selectedTeam != -1">
+      <!-- <h4 class="text-muted">Review the information, and make sure everything is correct.</h4> -->
+      <!-- <form class="form-regular" id="frmListTeam" [formGroup]="listTeamForm" (submit)="listTeamFormSubmit(listTeamForm, $event)" novalidate>
+          <label for="txtTeamName" class="sr-only">Team name</label>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="listTeamForm.controls.name.errors?.required && listTeamForm.controls.name.touched">
+              You must fill out the team name
+          </div>
+          <input type="text" id="txtListName" formControlName="name" class="form-control" placeholder="Team name" autofocus="">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="listTeamForm.invalid">List as available!</button>
+      </form> -->
+      <button class="btn btn-lg btn-primary btn-block" type="button" (click)="listTeam()">List as available!</button>
+    </div>
+  </div>
 </div>

@@ -48,6 +48,22 @@ export class UsersEpic implements OnInit {
       });
    }
 
+   getTeamInvites = (action$: ActionsObservable<any>) => {
+    return action$.ofType(UsersActions.GET_TEAM_INVITES) // Listen for this action
+      .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+          return this.usersService.getTeamInvites(payload)
+            .map((result:any[]) => ({ // when web service responds with success, call this action with payload that came back from webservice
+              type: UsersActions.SUCCESS_GET_TEAM_INVITES,
+              payload: result
+            })
+          )
+            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+              type: UsersActions.FAILED_GET_TEAM_INVITES,
+              payload: error
+          }));
+    });
+ }
+
    userLogin = (action$: ActionsObservable<any>) => {
       return action$.ofType(UsersActions.LOGIN) // Listen for this action
         .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below

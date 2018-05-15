@@ -46,12 +46,12 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" routerLink="/app/my-teams">
-                <div class="badge badge-primary dropdown-team-invites">{{ teamInvites }} invite<span *ngIf="teamInvited != 1">s</span></div>
+                <div class="badge badge-primary dropdown-team-invites">{{ teamInvites }} invite<span *ngIf="teamInvites != 1">s</span></div>
                 <span class="link-label">
                   My Teams
                 </span>
               </a>
-              <a class="dropdown-item" routerLink="/app/my-profile">My Profile</a>
+              <a class="dropdown-item" routerLink="/app/edit-profile">Edit Profile</a>
               <!-- <a class="dropdown-item">{{ teamInvites }}</a> -->
               <a class="dropdown-item" (click)="userLogout()">Logout</a>
             </div>

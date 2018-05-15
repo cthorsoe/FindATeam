@@ -23,6 +23,10 @@ export class UsersActions {
    static GET_USERS: string = 'GET_USERS';
    static SUCCESS_GET_USERS: string = 'SUCCESS_GET_USERS';
    static FAILED_GET_USERS: string = 'FAILED_GET_USERS';
+
+   static GET_TEAM_INVITES: string = 'GET_TEAM_INVITES';
+   static SUCCESS_GET_TEAM_INVITES: string = 'SUCCESS_GET_TEAM_INVITES';
+   static FAILED_GET_TEAM_INVITES: string = 'FAILED_GET_TEAM_INVITES';
    
    static DELETE_USER: string = 'DELETE_USER';
    static SUCCESS_DELETE_USER: string = 'SUCCESS_DELETE_USER';
@@ -53,6 +57,13 @@ export class UsersActions {
     });
   }
 
+  getTeamInvites(username:String){
+    this.ngRedux.dispatch({
+      type:UsersActions.GET_TEAM_INVITES,
+      payload: username
+  });
+  }
+
   deleteUser(username:String){
     this.ngRedux.dispatch({
         type:UsersActions.DELETE_USER,
@@ -68,7 +79,7 @@ export class UsersActions {
     });
   }
 
-  updateUser(user: Player): void{
+  updateUser(user: User): void{
     // console.log('updating user');
     this.ngRedux.dispatch({
         type: UsersActions.EDIT_USER,

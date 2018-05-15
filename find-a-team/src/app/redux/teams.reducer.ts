@@ -53,8 +53,8 @@ export function teamsReducer(state: TeamsState = INITIAL_STATE, action:any) {
     
     case TeamsActions.SUCCESS_CREATE_TEAM: // action.payload: Team
       console.log('PAYLOAD', action.payload);
-      return state;
-      // return tassign(state, {listedUsers: [...state.listedUsers, action.payload]})
+      return tassign(state, {teams: [...state.teams, action.payload]});
+      // return state;
     
     case TeamsActions.FAILED_CREATE_TEAM: // action.payload: empty
       return state;

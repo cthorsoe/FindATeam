@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+  <div class="col col-md-6 col-lg-4">
+      <form class="form-signin" id="frmCreateUser" [formGroup]="createTeamForm" (submit)="createTeamFormSubmit(createTeamForm, $event)" novalidate>
+          <h1 class="h3 mb-3 font-weight-normal text-center">Create team</h1>
+
+          <label for="txtCreateTeamName" class="sr-only">Team name</label>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="createTeamForm.controls.name.errors?.required && createTeamForm.controls.name.touched">
+              You must fill out the team name
+          </div>
+          <input type="text" id="txtCreateTeamName" formControlName="name" class="form-control" placeholder="Team name" autofocus="">
+
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="createTeamForm.invalid">Create team!</button>
+          <p><a class="regular-link" routerLink="../my-teams">Go back to my teams.</a></p>
+        </form>
+  </div>
+</div>
