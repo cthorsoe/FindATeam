@@ -26,7 +26,6 @@ import { FilterPlayersPipe } from './pipes/filter-players.pipe';
 import { AgePipe } from './pipes/age.pipe';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthService } from './services/auth.service';
-import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TeamsEpic } from './redux/teams.epic';
 import { TeamsService } from './redux/teams.service';
@@ -49,7 +48,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     MyTeamsComponent,
     FilterPlayersPipe,
     AgePipe,
-    MyProfileComponent,
     ProfileComponent,
     CreateTeamComponent,
     EditProfileComponent
