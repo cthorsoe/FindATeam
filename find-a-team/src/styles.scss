@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+.portal-container{
   margin-top: calc(48px + 15px);
 }
 .form-signin{
@@ -96,4 +96,17 @@ nav.navbar{
     text-decoration: none;
     color:#fd8230;
   }
+}
+
+.list-group.admin-menu{
+    height: 100vh;
+    background: #4E5D6C;
+}
+
+.navbar-sidebar{
+    flex-basis: 250px;
+}
+
+.admin-content{
+    padding: 0 15px;
 }

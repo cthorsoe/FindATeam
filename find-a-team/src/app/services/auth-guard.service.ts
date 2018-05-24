@@ -14,7 +14,6 @@ export class AuthGuardService implements CanActivate  {;
   }
 
   checkLogin(url: string): boolean {
-    
       console.log('Logged In', this.authService.isLoggedIn, 'Admin', this.authService.isAdmin);
       this.authService.redirectUrl = url;
       if (this.authService.isLoggedIn) { 
@@ -25,8 +24,6 @@ export class AuthGuardService implements CanActivate  {;
       }else{
         this.router.navigate(['app/login']);
       }
-      
-
   }
 
   getUserRoles(){

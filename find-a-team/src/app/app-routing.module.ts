@@ -14,6 +14,11 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { AdminComponent } from './admin-panel/admin/admin.component';
+import { DashboardComponent } from './admin-panel/dashboard/dashboard.component';
+import { ManageTeamsComponent } from './admin-panel/manage-teams/manage-teams.component';
+import { ManagePlayersComponent } from './admin-panel/manage-players/manage-players.component';
+import { AuthGuardAdminService } from './services/auth-guard-admin.service';
 
 const routes: Routes = [
     { path: '', redirectTo:'app/home', pathMatch: 'full' },
@@ -33,7 +38,14 @@ const routes: Routes = [
             { path: 'create-team', component: CreateTeamComponent, canActivate:[AuthGuardService]},
           ],
       },
-    // { path: 'register', component: RegisterComponent},
+    { path: 'admin', component: AdminComponent,canActivate:[AuthGuardAdminService], 
+        children: [
+            { path: '', component: DashboardComponent},
+            { path: 'dashboard', component: DashboardComponent},
+            { path: 'manage-teams', component: ManageTeamsComponent},
+            { path: 'manage-players', component: ManagePlayersComponent}
+        ],
+    },
 ];
 
 @NgModule({

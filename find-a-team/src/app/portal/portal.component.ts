@@ -25,6 +25,7 @@ export class PortalComponent implements OnInit, OnDestroy {
       if(data.user != undefined){
         this.user = data.user; // DOESNT UPDATE DATABINDED HTML?
         this.isLoggedIn = true;
+        this.isAdmin = data.user.isAdmin
       }else{
         this.user = undefined;
         this.isLoggedIn = false;

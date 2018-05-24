@@ -32,7 +32,12 @@ export class AppComponent implements OnInit  {
         if(this.loggedInSubscriptionHit){
 
             if(loggedIn && loggedIn.loggedIn){
-                this.authService.login();
+                let isAdmin = false;
+                if(loggedIn.userRole && loggedIn.userRole == "admin"){
+                    isAdmin = true;
+                }
+                this.authService.login(isAdmin);
+                
                 if(loggedIn.loggedInWithForm){
                     this.router.navigate(['app/home'])
                 }

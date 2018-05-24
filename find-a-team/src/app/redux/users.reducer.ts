@@ -23,8 +23,11 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
         console.log('PAYLOAD', action.payload);
         localStorage.tuLoginSession = action.payload.session;
         localStorage.tuLoginSessionId = action.payload.sessionId;
+        if(action.payload.role == "admin"){
+            action.payload.isAdmin = true;
+        }
         // newState.loggedIn = true;
-        return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: true}})
+        return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: true, userRole: action.payload.role}})
       // return state;
 
     case UsersActions.FAILED_LOGIN: // action.payload: empty
@@ -53,7 +56,10 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
 
     case UsersActions.SUCCESS_LOGIN_BY_SESSION: // action.payload: Player[]
       console.log('PAYLOAD', action.payload);
-      return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: false}})
+        if(action.payload.role == "admin"){
+            action.payload.isAdmin = true;
+        }
+      return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: false, userRole: action.payload.role}})
       // return state;
 
     case UsersActions.FAILED_LOGIN_BY_SESSION: // action.payload: empty

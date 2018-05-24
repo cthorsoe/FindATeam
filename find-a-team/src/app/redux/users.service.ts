@@ -8,11 +8,12 @@ import { User } from '../entities/user';
 
 @Injectable()
 export class UsersService {
+    // webserviceUrl:string = 'http://localhost:3333/';
     webserviceUrl:string = 'https://api.cthorsoe.host/';
     constructor(private http: HttpClient) {
         
     }
-
+   
     userLogin(loginForm){
       console.log('loginForm', loginForm);
       return this.http.post(this.webserviceUrl + 'users/login/', loginForm);
@@ -29,9 +30,8 @@ export class UsersService {
       return this.http.get(this.webserviceUrl + 'users/get-user/' + username);
     }
     getUsers(){
-      return this.http.get(this.webserviceUrl + 'users/get-listed-users');
+        return this.http.get(this.webserviceUrl + 'users/get-listed-users');
     }
-
     getTeamInvites(username:string){
       return this.http.get(this.webserviceUrl + 'users/get-team-invites-count/' + username);
     }
@@ -58,7 +58,7 @@ export class UsersService {
 
 
    static getInitialUsersState() : UsersState{
-    return { teamInvites: 0, loggedIn:{loggedIn: false, loggedInWithForm: false}, user: undefined, selectedUser: undefined, listedUsers:[]};
+    return { teamInvites: 0, loggedIn:{loggedIn: false, loggedInWithForm: false, userRole: "Guest"}, user: undefined, selectedUser: undefined, listedUsers:[]};
    }
 
 

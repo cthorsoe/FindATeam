@@ -1,0 +1,20 @@
+<div class="admin-container" >
+    <div class="row no-gutters">
+        <div class="navbar-sidebar">
+            <div class="list-group admin-menu">
+                <a class="list-group-item text-center">Admin Menu</a>
+                <a routerLink="./dashboard" class="list-group-item list-group-item-action" routerLinkActive="active">
+                    Dashboard
+                </a>
+                <a routerLink="./manage-teams" class="list-group-item list-group-item-action" routerLinkActive="active">Manage teams</a>
+                <a routerLink="./manage-players" class="list-group-item list-group-item-action" routerLinkActive="active">Manage players</a>
+                <a routerLink="../app/home" class="list-group-item list-group-item-action" routerLinkActive="active">Back to Platform</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="admin-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

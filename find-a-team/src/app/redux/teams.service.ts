@@ -7,10 +7,11 @@ import { Team } from '../entities/team';
 
 @Injectable()
 export class TeamsService {
-    webserviceUrl:string = 'https://api.cthorsoe.host/';
-  constructor(private http: HttpClient) {
-    
-  }
+    // webserviceUrl:string = 'https://api.cthorsoe.host/';
+    webserviceUrl:string = 'http://localhost:3333/';
+    constructor(private http: HttpClient) {
+        
+    }
 
     getTeam(id:number){
       return this.http.get(this.webserviceUrl + 'teams/get-team/' + id);

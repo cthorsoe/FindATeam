@@ -33,6 +33,11 @@ import { TeamsActions } from './redux/teams.actions';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FilterTeamsPipe } from './pipes/filter-teams.pipe';
+import { AdminComponent } from './admin-panel/admin/admin.component';
+import { ManageTeamsComponent } from './admin-panel/manage-teams/manage-teams.component';
+import { ManagePlayersComponent } from './admin-panel/manage-players/manage-players.component';
+import { DashboardComponent } from './admin-panel/dashboard/dashboard.component';
+import { AuthGuardAdminService } from './services/auth-guard-admin.service';
 
 
 @NgModule({
@@ -52,7 +57,11 @@ import { FilterTeamsPipe } from './pipes/filter-teams.pipe';
     ProfileComponent,
     CreateTeamComponent,
     EditProfileComponent,
-    FilterTeamsPipe
+    FilterTeamsPipe,
+    AdminComponent,
+    ManageTeamsComponent,
+    ManagePlayersComponent,
+    DashboardComponent
     
   ],
   imports: [
@@ -64,7 +73,7 @@ import { FilterTeamsPipe } from './pipes/filter-teams.pipe';
     FormsModule,
     MomentModule
   ],
-  providers: [AuthGuardService, AuthService, UsersEpic, UsersService, UsersActions, TeamsEpic, TeamsService, TeamsActions],
+  providers: [AuthGuardService, AuthGuardAdminService, AuthService, UsersEpic, UsersService, UsersActions, TeamsEpic, TeamsService, TeamsActions],
   // providers: [AuthGuardService, AuthService, UsersEpic, UsersService, UsersActions],
   bootstrap: [AppComponent]
 })
