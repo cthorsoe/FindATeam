@@ -33,10 +33,10 @@ import { TeamsActions } from './redux/teams.actions';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FilterTeamsPipe } from './pipes/filter-teams.pipe';
-import { AdminComponent } from './admin-panel/admin/admin.component';
-import { ManageTeamsComponent } from './admin-panel/manage-teams/manage-teams.component';
-import { ManagePlayersComponent } from './admin-panel/manage-players/manage-players.component';
-import { DashboardComponent } from './admin-panel/dashboard/dashboard.component';
+// import { AdminComponent } from './admin/admin/admin.component';
+// import { ManageTeamsComponent } from './admin/manage-teams/manage-teams.component';
+// import { ManagePlayersComponent } from './admin/manage-players/manage-players.component';
+// import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
 
 
@@ -58,10 +58,10 @@ import { AuthGuardAdminService } from './services/auth-guard-admin.service';
     CreateTeamComponent,
     EditProfileComponent,
     FilterTeamsPipe,
-    AdminComponent,
-    ManageTeamsComponent,
-    ManagePlayersComponent,
-    DashboardComponent
+    // AdminComponent,
+    // ManageTeamsComponent,
+    // ManagePlayersComponent,
+    // DashboardComponent
     
   ],
   imports: [

@@ -14,10 +14,10 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { AdminComponent } from './admin-panel/admin/admin.component';
-import { DashboardComponent } from './admin-panel/dashboard/dashboard.component';
-import { ManageTeamsComponent } from './admin-panel/manage-teams/manage-teams.component';
-import { ManagePlayersComponent } from './admin-panel/manage-players/manage-players.component';
+// import { AdminComponent } from './admin/admin/admin.component';
+// import { DashboardComponent } from './admin/dashboard/dashboard.component';
+// import { ManageTeamsComponent } from './admin/manage-teams/manage-teams.component';
+// import { ManagePlayersComponent } from './admin/manage-players/manage-players.component';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
 
 const routes: Routes = [
@@ -38,14 +38,10 @@ const routes: Routes = [
             { path: 'create-team', component: CreateTeamComponent, canActivate:[AuthGuardService]},
           ],
       },
-    { path: 'admin', component: AdminComponent,canActivate:[AuthGuardAdminService], 
-        children: [
-            { path: '', component: DashboardComponent},
-            { path: 'dashboard', component: DashboardComponent},
-            { path: 'manage-teams', component: ManageTeamsComponent},
-            { path: 'manage-players', component: ManagePlayersComponent}
-        ],
-    },
+      {
+        path: 'admin',
+        loadChildren: 'app/admin/admin.module#AdminModule'
+      },
 ];
 
 @NgModule({
