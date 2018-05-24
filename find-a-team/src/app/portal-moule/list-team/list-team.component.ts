@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Team } from '../entities/team';
+import { Team } from '../../entities/team';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../store/store';
-import { TeamsActions } from '../redux/teams.actions';
+import { IAppState } from '../../store/store';
+import { TeamsActions } from '../../redux/teams.actions';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({

@@ -1,7 +1,9 @@
 import {Injectable, Pipe, PipeTransform} from '@angular/core';
 import { Player } from '../entities/player';
+
 @Pipe({name: 'filterPlayers'})
 @Injectable()
+
 export class FilterPlayersPipe implements PipeTransform {
      transform(items: Player[], args: string): any {
      if (args && items.length >= 0) {

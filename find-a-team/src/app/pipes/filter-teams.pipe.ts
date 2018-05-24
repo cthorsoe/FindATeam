@@ -8,8 +8,6 @@ export class FilterTeamsPipe implements PipeTransform {
 
   transform(teams: Team[], args: string): any {
     if (args && teams.length >= 0) {
-      console.log(teams[0].members[0].firstname)
-      // console.log(teams[0].members.find(x => x.firstname.includes(args.toLowerCase())));
       let teamsFound = teams.filter(
         team => team.name && team.name.toLowerCase().includes(args.toLowerCase())
         || team.members && team.members.length > 0 && team.members.findIndex(x => x.username.toLowerCase().includes(args.toLowerCase())) > -1

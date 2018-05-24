@@ -12,49 +12,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit  {
-  userSubscription;
-  loggedInSubscription;
-  loggedInSubscriptionHit:boolean = false;
-  constructor (private ngRedux:NgRedux<IAppState>, private usersActions: UsersActions, private teamsActions: TeamsActions, private authService:AuthService, private router:Router){
+//   userSubscription;
+//   loggedInSubscription;
+//   loggedInSubscriptionHit:boolean = false;
+//   constructor (private ngRedux:NgRedux<IAppState>, private usersActions: UsersActions, private teamsActions: TeamsActions, private authService:AuthService, private router:Router){
+
+//   }
+  constructor (){
 
   }
   ngOnInit(): void {
-    this.usersActions.getUsers();
-    this.teamsActions.getTeams()
-    this.userSubscription = this.ngRedux.select(state => state.users.user).subscribe(user => {
-        if(user && user != undefined){
-            this.teamsActions.getMyTeams(user.username);
-            this.usersActions.getTeamInvites(user.username);
+    // this.usersActions.getUsers();
+    // this.teamsActions.getTeams();
+    // this.userSubscription = this.ngRedux.select(state => state.users.user).subscribe(user => {
+    //     if(user && user != undefined){
+    //         this.teamsActions.getMyTeams(user.username);
+    //         this.usersActions.getTeamInvites(user.username);
         
-        }
-    });
-    this.loggedInSubscription = this.ngRedux.select(state => state.users.loggedIn).subscribe(loggedIn => {
-        if(this.loggedInSubscriptionHit){
+    //     }
+    // });
+    // this.loggedInSubscription = this.ngRedux.select(state => state.users.loggedIn).subscribe(loggedIn => {
+    //     if(this.loggedInSubscriptionHit){
 
-            if(loggedIn && loggedIn.loggedIn){
-                let isAdmin = false;
-                if(loggedIn.userRole && loggedIn.userRole == "admin"){
-                    isAdmin = true;
-                }
-                this.authService.login(isAdmin);
+    //         if(loggedIn && loggedIn.loggedIn){
+    //             let isAdmin = false;
+    //             if(loggedIn.userRole && loggedIn.userRole == "admin"){
+    //                 isAdmin = true;
+    //             }
+    //             this.authService.login(isAdmin);
                 
-                if(loggedIn.loggedInWithForm){
-                    this.router.navigate(['app/home'])
-                }
-            }else{
-                this.authService.logout();
-                this.router.navigate(['app/login'])
+    //             if(loggedIn.loggedInWithForm){
+    //                 this.router.navigate(['app/home'])
+    //             }
+    //         }else{
+    //             this.authService.logout();
+    //             this.router.navigate(['app/login'])
                 
-            }
-        }else{
-            this.loggedInSubscriptionHit = true;
-        }
-    });
-    // console.log(localStorage.tuLoginSession, localStorage.tuLoginSessionId)
-    if(localStorage.tuLoginSession && localStorage.tuLoginSessionId){
-      console.log('LOGGING IN BY SESSION')
-      this.usersActions.loginBySession(localStorage.tuLoginSession, localStorage.tuLoginSessionId);
+    //         }
+    //     }else{
+    //         this.loggedInSubscriptionHit = true;
+    //     }
+    // });
+    // // console.log(localStorage.tuLoginSession, localStorage.tuLoginSessionId)
+    // if(localStorage.tuLoginSession && localStorage.tuLoginSessionId){
+    //   console.log('LOGGING IN BY SESSION')
+    //   this.usersActions.loginBySession(localStorage.tuLoginSession, localStorage.tuLoginSessionId);
 
-    }
+    // }
  }
 }

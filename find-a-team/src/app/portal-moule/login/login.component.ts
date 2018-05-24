@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsersActions } from '../redux/users.actions';
-import { Player } from '../entities/player';
+import { UsersActions } from '../../redux/users.actions';
+import { Player } from '../../entities/player';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { TeamsActions } from '../redux/teams.actions';
+import { AuthService } from '../../services/auth.service';
+import { TeamsActions } from '../../redux/teams.actions';
 
 @Component({
   selector: 'app-login',

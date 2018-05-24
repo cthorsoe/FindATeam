@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Team } from '../entities/team';
-import { TeamsActions } from '../redux/teams.actions';
-import { IAppState } from '../store/store';
+import { Team } from '../../entities/team';
+import { TeamsActions } from '../../redux/teams.actions';
+import { IAppState } from '../../store/store';
 import { NgRedux } from '@angular-redux/store';
-import { Player } from '../entities/player';
-import { User } from '../entities/user';
+import { Player } from '../../entities/player';
+import { User } from '../../entities/user';
 
 @Component({
   selector: 'app-create-team',

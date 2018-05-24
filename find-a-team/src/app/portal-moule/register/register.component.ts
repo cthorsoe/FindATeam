@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { UsersEpic } from '../redux/users.epic';
-import { UsersActions } from '../redux/users.actions';
-import { Player } from '../entities/player';
+import { UsersEpic } from '../../redux/users.epic';
+import { UsersActions } from '../../redux/users.actions';
+import { Player } from '../../entities/player';
 import { Router } from '@angular/router';
 
 @Component({

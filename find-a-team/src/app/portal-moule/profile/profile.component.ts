@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { User } from '../entities/user';
-import { UsersActions } from '../redux/users.actions';
+import { User } from '../../entities/user';
+import { UsersActions } from '../../redux/users.actions';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../store/store';
+import { IAppState } from '../../store/store';
 
 @Component({
   selector: 'app-profile',

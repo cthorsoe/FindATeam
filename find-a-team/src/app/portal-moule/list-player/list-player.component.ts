@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../entities/user';
+import { User } from '../../entities/user';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../store/store';
+import { IAppState } from '../../store/store';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsersActions } from '../redux/users.actions';
+import { UsersActions } from '../../redux/users.actions';
 import { Router } from '@angular/router';
 
 @Component({

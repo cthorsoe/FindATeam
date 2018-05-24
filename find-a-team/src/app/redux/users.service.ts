@@ -8,8 +8,8 @@ import { User } from '../entities/user';
 
 @Injectable()
 export class UsersService {
-    // webserviceUrl:string = 'http://localhost:3333/';
-    webserviceUrl:string = 'https://api.cthorsoe.host/';
+    // webserviceUrl:string = 'https://api.cthorsoe.host/';
+    webserviceUrl:string = 'http://localhost:3333/';
     constructor(private http: HttpClient) {
         
     }

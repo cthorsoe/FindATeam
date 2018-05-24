@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Player } from '../entities/player';
+import { Player } from '../../entities/player';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../store/store';
+import { IAppState } from '../../store/store';
 import { Router } from '@angular/router';
-import { UsersActions } from '../redux/users.actions';
+import { UsersActions } from '../../redux/users.actions';
 
 @Component({
   selector: 'app-find-player',
