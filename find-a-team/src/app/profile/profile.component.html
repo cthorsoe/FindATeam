@@ -19,6 +19,17 @@
           <!-- <strong>Description:</strong><br> -->
           {{ user.description }}
         </div>
+        <ng-template [ngIf]="loggedInUser && loggedInUser.id != user.id && invitableTeams.length > 0">
+            <h5>Invite to team</h5>
+            <label>Select team</label>
+            <select class="form-control mb-2" id="selected-team" name="selected-team" [(ngModel)]="selectedTeam">
+                <option *ngFor="let team of invitableTeams" [ngValue]="team">
+                    {{team.name}}
+                    <!-- <ng-template [ngIf]="isUserInTeam(team)"></ng-template> -->
+                </option>
+            </select>
+            <button type="button" id="btnInviteUser" class="btn btn-primary" (click)="inviteUser()" *ngIf="selectedTeam != undefined">Invite to team</button>
+        </ng-template>
       </div>
     </div>
     

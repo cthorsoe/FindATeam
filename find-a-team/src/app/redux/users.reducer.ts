@@ -179,6 +179,12 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
     case UsersActions.FAILED_LIST_USER: // action.payload: empty
       return state;
     /* ------------------------------------ CREATE USER END ------------------------------------ */
+
+    /* ------------------------------------ ADD INVITE BEGIN ------------------------------------ */
+    case UsersActions.ADD_INVITE: // action.payload: empty
+        return tassign(state, {teamInvites: (state.teamInvites + 1)})
+    /* ------------------------------------ ADD INVITE END ------------------------------------ */
+
     default:
       return state;
  }

@@ -38,6 +38,7 @@ import { FilterTeamsPipe } from './pipes/filter-teams.pipe';
 // import { ManagePlayersComponent } from './admin/manage-players/manage-players.component';
 // import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
+import { SocketService } from './services/socket.service';
 
 
 @NgModule({

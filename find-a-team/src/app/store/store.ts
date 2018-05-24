@@ -20,6 +20,7 @@ export class UsersState {
   loggedIn:any;
   user: User;
   selectedUser: User;
+  invitableTeams: Team[];
   listedUsers: Player[];
 }
 export class TeamsState {

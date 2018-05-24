@@ -58,7 +58,7 @@ export class UsersService {
 
 
    static getInitialUsersState() : UsersState{
-    return { teamInvites: 0, loggedIn:{loggedIn: false, loggedInWithForm: false, userRole: "Guest"}, user: undefined, selectedUser: undefined, listedUsers:[]};
+    return { teamInvites: 0, loggedIn:{loggedIn: false, loggedInWithForm: false, userRole: "Guest"}, user: undefined, selectedUser: undefined, invitableTeams: [], listedUsers:[]};
    }
 
 

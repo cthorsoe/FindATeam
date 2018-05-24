@@ -50,6 +50,8 @@ export class UsersActions {
    static LIST_USER: string = 'LIST_USER';
    static SUCCESS_LIST_USER: string = 'SUCCESS_LIST_USER';
    static FAILED_LIST_USER: string = 'FAILED_LIST_USER';
+   
+   static ADD_INVITE: string = 'ADD_INVITE';
 
   getSpecificUser(username:String){
     this.ngRedux.dispatch({
@@ -125,5 +127,10 @@ export class UsersActions {
       type: UsersActions.LIST_USER,
       payload: user
    });
+  }
+  addInvite(): void{
+    this.ngRedux.dispatch({
+        type: UsersActions.ADD_INVITE,
+     });
   }
 }

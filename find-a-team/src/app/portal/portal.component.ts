@@ -12,12 +12,13 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./portal.component.scss']
 })
 export class PortalComponent implements OnInit, OnDestroy {
-  teamInvites:number;
-  isLoggedIn:boolean;
-  isAdmin:boolean;
-  user:Player;
-  subscription;
-  constructor(private ngRedux: NgRedux<IAppState>, private usersActions: UsersActions, private router: Router, private authService:AuthService) { }
+    
+    teamInvites:number;
+    isLoggedIn:boolean;
+    isAdmin:boolean;
+    user:Player;
+    subscription;
+    constructor(private ngRedux: NgRedux<IAppState>, private usersActions: UsersActions, private router: Router, private authService:AuthService) { }
 
   ngOnInit() {
     this.subscription = this.ngRedux.select(state => state.users).subscribe(data => {
