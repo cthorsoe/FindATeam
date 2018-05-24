@@ -4,28 +4,62 @@ import { tassign } from 'tassign';
 import { UsersService } from './users.service';
 import { User } from '../entities/user';
 import { TeamsActions } from './teams.actions';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 const INITIAL_STATE: UsersState = UsersService.getInitialUsersState();
-
+let authService:AuthService = new AuthService();
 
 export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
   let newUsersArray;
   let index;
+  let newState;
   switch (action.type) {
     /* ------------------------------------ USER LOGIN BEGIN ------------------------------------ */
     case UsersActions.LOGIN: // action.payload: empty
       return state;
 
     case UsersActions.SUCCESS_LOGIN: // action.payload: Player[]
-      console.log('PAYLOAD', action.payload);
-      return tassign(state, {user: action.payload})
+        console.log('PAYLOAD', action.payload);
+        localStorage.tuLoginSession = action.payload.session;
+        localStorage.tuLoginSessionId = action.payload.sessionId;
+        // newState.loggedIn = true;
+        return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: true}})
       // return state;
 
     case UsersActions.FAILED_LOGIN: // action.payload: empty
       return state;
-    case UsersActions.LOGOUT: // action.payload: empty
-      return tassign(state, {user: undefined})
     /* ------------------------------------ USER LOGIN END ------------------------------------ */
+
+    /* ------------------------------------ USER LOGOUT BEGIN ------------------------------------ */
+    case UsersActions.LOGOUT: // action.payload: empty
+      return state
+
+    case UsersActions.SUCCESS_LOGOUT: // action.payload: Player[]
+      console.log('PAYLOAD', action.payload);
+      delete localStorage.tuLoginSession;
+      delete localStorage.tuLoginSessionId;
+      // delete action.payload.session;
+      return tassign(state, {user: undefined, loggedIn: {loggedIn: false, loggedInWithForm: false}})
+      // return state;
+
+    case UsersActions.FAILED_LOGOUT: // action.payload: empty
+      return state;
+      /* ------------------------------------ USER LOGOUT END ------------------------------------ */
+      
+    /* ------------------------------------ LOGIN BY SESSION BEGIN ------------------------------------ */
+    case UsersActions.LOGIN_BY_SESSION: // action.payload: empty
+      return state;
+
+    case UsersActions.SUCCESS_LOGIN_BY_SESSION: // action.payload: Player[]
+      console.log('PAYLOAD', action.payload);
+      return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: false}})
+      // return state;
+
+    case UsersActions.FAILED_LOGIN_BY_SESSION: // action.payload: empty
+      authService.failedSessionLogin()
+      return state;
+    /* ------------------------------------ LOGIN BY SESSION END ------------------------------------ */
 
     /* ------------------------------------ GET SPECIFIC USER BEGIN ------------------------------------ */
     case UsersActions.GET_SPECIFIC_USER: // action.payload: empty
@@ -99,8 +133,19 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
       return state;
     
     case UsersActions.SUCCESS_EDIT_USER: // action.payload: User
-      console.log('PAYLOAD', action.payload);
-      return tassign(state, {user: action.payload})
+      newState = {user: action.payload};
+      index = state.listedUsers.findIndex(x => x.username == action.payload.username);
+      console.log('INDEX', index);
+      if(index > -1){
+        newUsersArray = [...state.listedUsers];
+        newUsersArray[index] = action.payload;
+        newState.listedUsers = newUsersArray;
+      }
+      if(state.selectedUser.username == action.payload.username){
+        newState.selectedUser = action.payload;
+      }
+
+      return tassign(state, newState)
 
       // index = newUsersArray.findIndex(x => x.username == action.payload.username);
       // if(index > -1){

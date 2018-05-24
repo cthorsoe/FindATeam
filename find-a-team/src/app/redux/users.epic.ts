@@ -64,20 +64,49 @@ export class UsersEpic implements OnInit {
     });
  }
 
-   userLogin = (action$: ActionsObservable<any>) => {
-      return action$.ofType(UsersActions.LOGIN) // Listen for this action
-        .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
-            return this.usersService.userLogin(payload)
-              .map((result:Object) => ({ // when web service responds with success, call this action with payload that came back from webservice
-                type: UsersActions.SUCCESS_LOGIN,
-                payload: result
-              }))
-              .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
-                type: UsersActions.FAILED_LOGIN,
-                payload: error
-            }));
+  userLogin = (action$: ActionsObservable<any>) => {
+    return action$.ofType(UsersActions.LOGIN) // Listen for this action
+      .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+          return this.usersService.userLogin(payload)
+            .map((result:Object) => ({ // when web service responds with success, call this action with payload that came back from webservice
+              type: UsersActions.SUCCESS_LOGIN,
+              payload: result
+            }))
+            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+              type: UsersActions.FAILED_LOGIN,
+              payload: error
+          }));
+    });
+  }
+  userLogout = (action$: ActionsObservable<any>) => {
+    return action$.ofType(UsersActions.LOGOUT) // Listen for this action
+      .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+          return this.usersService.userLogout(payload)
+            .map((result:Object) => ({ // when web service responds with success, call this action with payload that came back from webservice
+              type: UsersActions.SUCCESS_LOGOUT,
+              payload: result
+            }))
+            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+              type: UsersActions.FAILED_LOGOUT,
+              payload: error
+          }));
+    });
+  }
+
+  loginBySession = (action$: ActionsObservable<any>) => {
+    return action$.ofType(UsersActions.LOGIN_BY_SESSION) // Listen for this action
+      .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+          return this.usersService.loginBySession(payload)
+            .map((result:Object) => ({ // when web service responds with success, call this action with payload that came back from webservice
+              type: UsersActions.SUCCESS_LOGIN_BY_SESSION,
+              payload: result
+            }))
+            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+              type: UsersActions.FAILED_LOGIN_BY_SESSION,
+              payload: error
+          }));
       });
-   }
+  }
 
    createUser = (action$: ActionsObservable<any>) => {
       return action$.ofType(UsersActions.CREATE_USER) // Listen for this action

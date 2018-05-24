@@ -3,11 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import { AuthGuardService } from './auth-guard.service';
 
 @Injectable()
 export class AuthService {
   isLoggedIn = false;
   isAdmin = false;
+  sessionLoginFailed = false;
   redirectUrl: string;
   constructor() { }
 
@@ -25,6 +27,12 @@ export class AuthService {
     this.isLoggedIn = false; 
     // localStorage.setItem('FAS-Logged-In', '0');
     // localStorage.setItem('FAS-Admin', '0');
+  }
+  failedSessionLogin(){
+    console.log('SESSION LOGIN FAILED')
+    this.sessionLoginFailed = true;
+    // this.authGuardService.checkLogin(this.redirectUrl);
+
   }
 
 }

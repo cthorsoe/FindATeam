@@ -3,9 +3,8 @@ import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuardService implements CanActivate  {
+export class AuthGuardService implements CanActivate  {;
   constructor( private router: Router, private authService: AuthService){
-
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
      console.log('state.url', state.url);
@@ -14,13 +13,20 @@ export class AuthGuardService implements CanActivate  {
      return this.checkLogin(url);
   }
 
-  checkLogin(url: string): boolean { 
-     console.log('Logged In', this.authService.isLoggedIn, 'Admin', this.authService.isAdmin);
-     this.authService.redirectUrl = url;
-     if (this.authService.isLoggedIn) { 
-        return true; 
-     }
-     this.router.navigate(['app/login']);
+  checkLogin(url: string): boolean {
+    
+      console.log('Logged In', this.authService.isLoggedIn, 'Admin', this.authService.isAdmin);
+      this.authService.redirectUrl = url;
+      if (this.authService.isLoggedIn) { 
+         return true; 
+      }
+      if((localStorage.tuLoginSession && localStorage.tuLoginSessionId && !this.authService.sessionLoginFailed)){
+        this.router.navigate(['app/home']);
+      }else{
+        this.router.navigate(['app/login']);
+      }
+      
+
   }
 
   getUserRoles(){

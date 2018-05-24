@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
     if(loginForm.valid){
       this.usersActions.userLogin(loginForm.value); // HVORDAN KAN JEG VIDE AT DEN HER ER FÆRDIG MED ALT DEN SKAL GØRE?
       // IF LOGIN WAS SUCCESS...
-      this.teamsActions.getMyTeams(loginForm.value.username);
-      this.usersActions.getTeamInvites(loginForm.value.username);
-      this.authService.login();
+      // this.teamsActions.getMyTeams(loginForm.value.username);
+      // this.usersActions.getTeamInvites(loginForm.value.username);
+      // this.authService.login();
       // END IF.
 
       // FØLGENDE KODE SKULLE KØRES NÅR SUCCESS_LOGIN ER KØRT I REDUCEREN.
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       //     // this.router.navigate(['portal']);
       // }
       
-      this.router.navigate(['app/home']);
+      // this.router.navigate(['app/home']);
       console.log('valid');
    }else{
       console.log('invalid');

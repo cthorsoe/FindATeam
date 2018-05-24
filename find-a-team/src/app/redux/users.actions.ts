@@ -14,7 +14,14 @@ export class UsersActions {
    static LOGIN: string = 'LOGIN';
    static SUCCESS_LOGIN: string = 'SUCCESS_LOGIN';
    static FAILED_LOGIN: string = 'FAILED_LOGIN';
+   
    static LOGOUT: string = 'LOGOUT';
+   static SUCCESS_LOGOUT: string = 'SUCCESS_LOGOUT';
+   static FAILED_LOGOUT: string = 'FAILED_LOGOUT';
+
+   static LOGIN_BY_SESSION: string = 'LOGIN_BY_SESSION';
+   static SUCCESS_LOGIN_BY_SESSION: string = 'SUCCESS_LOGIN_BY_SESSION';
+   static FAILED_LOGIN_BY_SESSION: string = 'FAILED_LOGIN_BY_SESSION';
 
    static GET_SPECIFIC_USER: string = 'GET_SPECIFIC_USER';
    static SUCCESS_GET_SPECIFIC_USER: string = 'SUCCESS_GET_SPECIFIC_USER';
@@ -94,10 +101,22 @@ export class UsersActions {
        payload: user
     });
   }
-  userLogout(): void{ // {username, password}
+
+  loginBySession(sessionSalt, sessionId): void{ // {username, password}
     // console.log('creating user');
     this.ngRedux.dispatch({
-       type: UsersActions.LOGOUT
+       type: UsersActions.LOGIN_BY_SESSION,
+       payload: {
+         sessionSalt:sessionSalt,
+         sessionId:sessionId
+       }
+    });
+  }
+  userLogout(sessionId): void{ // {username, password}
+    // console.log('creating user');
+    this.ngRedux.dispatch({
+       type: UsersActions.LOGOUT,
+       payload: sessionId
     });
   }
 

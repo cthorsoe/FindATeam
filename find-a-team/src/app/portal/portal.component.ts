@@ -38,10 +38,7 @@ export class PortalComponent implements OnInit, OnDestroy {
   }
 
   userLogout(){
-    console.log('USER LOGOUT');
-    this.authService.logout();
-    this.usersActions.userLogout();
-    this.router.navigate(['app/home']);
+    this.usersActions.userLogout(localStorage.tuLoginSessionId);
   }
 
 }

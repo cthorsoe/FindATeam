@@ -5,7 +5,7 @@
     <select class="form-control" id="selected-team" name="selected-team" [(ngModel)]="selectedTeam" (ngModelChange)="onTeamChanged($event, selectedTeam)">
       <option *ngFor="let team of teamList" [ngValue]="team">{{team.name}}</option>
     </select>
-    <div class="my-3" *ngIf="selectedTeam && selectedTeam != -1">
+    <div class="my-3" *ngIf="selectedTeam && selectedTeam.id != -1">
       <!-- <h4 class="text-muted">Review the information, and make sure everything is correct.</h4> -->
       <!-- <form class="form-regular" id="frmListTeam" [formGroup]="listTeamForm" (submit)="listTeamFormSubmit(listTeamForm, $event)" novalidate>
           <label for="txtTeamName" class="sr-only">Team name</label>

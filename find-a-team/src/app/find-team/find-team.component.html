@@ -7,14 +7,14 @@
             <i class="material-icons">search</i>
          </span>
         </div>
-        <input class="form-control" placeholder="Filter players" type="text" [(ngModel)]="teamSearch">
+        <input class="form-control" placeholder="Filter teams" type="text" [(ngModel)]="teamSearch">
       </div>
   </div>
 </div>
 <div *ngIf="teamList.length == 0; else teamsContainer">There are currently no available teams listed.</div>
 <ng-template #teamsContainer>
 <div class="row">
-  <div class="col col-xs-12 col-sm-6 col-md-6 col-xl-4" *ngFor="let team of teamList">
+  <div class="col col-xs-12 col-sm-6 col-md-6 col-xl-4" *ngFor="let team of teamList | filterTeams: teamSearch">
     <p *ngIf="team === -1;else teamCard">No matching teams found.</p>
     <ng-template #teamCard>
       <div class="card list-card mb-4">

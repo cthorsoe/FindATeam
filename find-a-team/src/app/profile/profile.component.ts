@@ -12,10 +12,10 @@ import { IAppState } from '../store/store';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  private username:String;
-  private user:User = new User();
-  private routeSubscription;
-  private subscription;
+    username:String;
+    user:User = new User();
+    routeSubscription;
+    subscription;
   constructor(private route: ActivatedRoute, private usersActions:UsersActions, private ngRedux:NgRedux<IAppState>) {}
 
   ngOnInit() {

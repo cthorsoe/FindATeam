@@ -11,26 +11,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerUserForm: FormGroup;
-  constructor(private fb: FormBuilder, private usersActions:UsersActions, private router:Router){
-    this.createForm();
-  }
+    registerUserForm: FormGroup;
+    constructor(private fb: FormBuilder, private usersActions:UsersActions, private router:Router){
+        this.createForm();
+    }
+    
+    createForm() {
+      this.registerUserForm = this.fb.group({
+          firstname: ['', Validators.required],
+          lastname: ['', Validators.required],
+          username: ['', Validators.required],
+          email: ['', [Validators.required, Validators.email]],
+          dateofbirth: ['', Validators.required],
+          password: ['', Validators.required],
+          passwordConfirm: ['', Validators.required],
+        });
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
-
-  createForm() {
-    this.registerUserForm = this.fb.group({
-       firstname: ['', Validators.required],
-       lastname: ['', Validators.required],
-       username: ['', Validators.required],
-       email: ['', [Validators.required, Validators.email]],
-       dateofbirth: ['', Validators.required],
-       password: ['', Validators.required],
-       passwordConfirm: ['', Validators.required],
-    });
-  }
+    }
   registerUserFormSubmit(registerUserForm:FormGroup, event:Event){
     console.log('submit', registerUserForm, registerUserForm.invalid)
     console.log(JSON.stringify(registerUserForm.value));

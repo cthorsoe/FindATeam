@@ -32,6 +32,7 @@ import { TeamsService } from './redux/teams.service';
 import { TeamsActions } from './redux/teams.actions';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { FilterTeamsPipe } from './pipes/filter-teams.pipe';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     AgePipe,
     ProfileComponent,
     CreateTeamComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    FilterTeamsPipe
     
   ],
   imports: [
@@ -76,6 +78,8 @@ export class AppModule {
       this.usersEpic.editUser,
       this.usersEpic.createUser,
       this.usersEpic.userLogin,
+      this.usersEpic.loginBySession,
+      this.usersEpic.userLogout,
       this.usersEpic.listUser,
       this.teamsEpic.getSpecificTeam,
       this.teamsEpic.getTeams,

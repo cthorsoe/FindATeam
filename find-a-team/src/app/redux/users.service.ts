@@ -8,51 +8,57 @@ import { User } from '../entities/user';
 
 @Injectable()
 export class UsersService {
-  playerList:Player[];
-  teamList:Team[];
-  
-  constructor(private http: HttpClient) {
-    
-  }
+    webserviceUrl:string = 'https://api.cthorsoe.host/';
+    constructor(private http: HttpClient) {
+        
+    }
 
     userLogin(loginForm){
       console.log('loginForm', loginForm);
-      return this.http.post('http://localhost:3333/user-login/', loginForm);
+      return this.http.post(this.webserviceUrl + 'users/login/', loginForm);
+    }
+    loginBySession(session){
+      return this.http.post(this.webserviceUrl + 'users/login-by-session/', session);
+    }
+
+    userLogout(sessionid){
+      console.log('sessionid', sessionid)
+      return this.http.delete(this.webserviceUrl + 'users/delete-login-session/' + sessionid, {responseType: 'text'});
     }
     getUser(username:String){
-      return this.http.get('http://localhost:3333/get-user/' + username);
+      return this.http.get(this.webserviceUrl + 'users/get-user/' + username);
     }
     getUsers(){
-      return this.http.get('http://localhost:3333/get-listed-users');
+      return this.http.get(this.webserviceUrl + 'users/get-listed-users');
     }
 
     getTeamInvites(username:string){
-      return this.http.get('http://localhost:3333/get-team-invites-count/' + username);
+      return this.http.get(this.webserviceUrl + 'users/get-team-invites-count/' + username);
     }
 
     deleteUser(id:String){
       // return this.http.delete('http://angular2api2.azurewebsites.net/api/internships/' + id, {responseType: 'text'});
-      return this.http.delete('http://localhost:3333/delete-user', {responseType: 'text'});
+      return this.http.delete(this.webserviceUrl + 'users/delete-user', {responseType: 'text'});
     }
     editUser(user:User){
       // return this.http.put('http://angular2api2.azurewebsites.net/api/internships/' + user.username, user, {responseType: 'text'});
-      return this.http.put('http://localhost:3333/edit-user', user, {responseType: 'text'});
+      return this.http.put(this.webserviceUrl + 'users/edit-user', user, {responseType: 'text'});
     }
     
     createUser(user:Player){
       //MAKE HTTP REQUEST TO SERVER TO CREATE IN DATABASE
       // return this.http.post('http://angular2api2.azurewebsites.net/api/internships', baby);
-      // return this.http.get('http://localhost:3333/get-users');
-      return this.http.post('http://localhost:3333/create-user', user, {responseType: 'text'});
+      // return this.http.get(this.webserviceUrl + 'users/get-users');
+      return this.http.post(this.webserviceUrl + 'users/create-user', user, {responseType: 'text'});
       
     }
     listUser(user:User){
-      return this.http.post('http://localhost:3333/list-user', user, {responseType: 'text'});
+      return this.http.post(this.webserviceUrl + 'users/list-user', user, {responseType: 'text'});
     }
 
 
    static getInitialUsersState() : UsersState{
-    return { teamInvites: 0, user: undefined, selectedUser: undefined, listedUsers:[]};
+    return { teamInvites: 0, loggedIn:{loggedIn: false, loggedInWithForm: false}, user: undefined, selectedUser: undefined, listedUsers:[]};
    }
 
 

@@ -17,6 +17,7 @@ import { User } from '../entities/user';
 
 export class UsersState {
   teamInvites:number;
+  loggedIn:any;
   user: User;
   selectedUser: User;
   listedUsers: Player[];
@@ -33,8 +34,5 @@ export class IAppState {
 
 export const rootReducer = combineReducers<IAppState>({
   users: usersReducer,
-  teams: teamsReducer,
-  // when you add more reducers, add them here..
-
- router: routerReducer
+  teams: teamsReducer
 });
