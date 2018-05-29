@@ -19,6 +19,7 @@ export class UsersService {
       return this.http.post(this.webserviceUrl + 'users/login/', loginForm);
     }
     loginBySession(session){
+        console.log('SESSION', session)
       return this.http.post(this.webserviceUrl + 'users/login-by-session/', session);
     }
 

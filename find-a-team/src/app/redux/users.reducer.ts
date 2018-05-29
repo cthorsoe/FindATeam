@@ -52,7 +52,8 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
       
     /* ------------------------------------ LOGIN BY SESSION BEGIN ------------------------------------ */
     case UsersActions.LOGIN_BY_SESSION: // action.payload: empty
-      return state;
+        console.log('LOGIN_BY_SESSION', action.payload)
+        return state;
 
     case UsersActions.SUCCESS_LOGIN_BY_SESSION: // action.payload: Player[]
       console.log('PAYLOAD', action.payload);
