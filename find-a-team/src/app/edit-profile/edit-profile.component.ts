@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DateOfBirthValidator } from '../validators/DateOfBirthValidator';
 import { UsersActions } from '../redux/users.actions';
 import { Router } from '@angular/router';
 import { User } from '../entities/user';
@@ -28,14 +29,18 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
   createForm(user) {
     this.editUserForm = this.fb.group({
-       firstname: [user.firstname, Validators.required],
-       lastname: [user.lastname, Validators.required],
-       username: [user.username, Validators.required],
-       email: [user.email, [Validators.required, Validators.email]],
-       dateofbirth: [user.dateofbirth, Validators.required],
-       playerrole: [user.playerrole],
-       phone: [user.phone],
-       description: [user.description],
+        firstname: [user.firstname, Validators.required],
+        lastname: [user.lastname, Validators.required],
+        username: [user.username, Validators.required],
+        email: [user.email, [Validators.required, Validators.email]],
+        dateofbirth: [user.dateofbirth, Validators.compose([
+                Validators.required,
+                DateOfBirthValidator.getDateOfBirthValidator()
+            ])
+        ],
+        playerrole: [user.playerrole],
+        phone: [user.phone],
+        description: [user.description],
     });
   }
   ngOnDestroy(){

@@ -14,8 +14,7 @@ describe('Create team', () => {
     });
 
     it('3.1: Get current teams count', async() => {
-        let countPromise = team.getMyTeamsCount();
-        countPromise.then(function(count){
+        team.getMyTeamsCount().then(function _resolvePromiseOfCall(count){
             teamsCountStart = count;
         });
     });
@@ -29,8 +28,7 @@ describe('Create team', () => {
     });
 
     it('3.4: Get current teams count after and check if it increased by one', async() => {
-        let countPromise = team.getMyTeamsCount();
-        countPromise.then(function(count){
+        team.getMyTeamsCount().then(function _resolvePromiseOfCall(count){
             expect((teamsCountStart + 1)).toEqual(count);
         });
     });

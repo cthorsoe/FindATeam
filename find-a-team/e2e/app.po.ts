@@ -8,15 +8,6 @@ export class AppPage {
     getParagraphText() {
         return element(by.css('app-root h1')).getText();
     }
-
-    // selectDropdownbyNum = function ( element, optionNum ) {
-    //     if (optionNum){
-    //         var options = element.all(by.tagName('option'))   
-    //         .then(function(options){
-    //             options[optionNum].click();
-    //         });
-    //     }
-    // };
 }
 
 export class Login {
@@ -88,11 +79,13 @@ export class User{
         });
     }
 
-    getListedUserCount():any{
+    getListedUserCount(){
         this.page.navigateTo('/app/players');
-        let countPromise = element.all(by.css('.list-card')).count();
-        browser.sleep(2000);
-        return countPromise;
+        expect(browser.getCurrentUrl()).toContain('/app/players');
+        return element.all(by.css('.list-card')).then(function(arr) {
+            expect(arr).toBeDefined()
+            return arr.length
+        });
     }
 
 }
@@ -133,15 +126,18 @@ export class Team {
     getMyTeamsCount():any{
         expect(browser.getCurrentUrl()).toContain('/app/my-teams');
         browser.sleep(2000);
-        let countPromise = element.all(by.css('.list-card')).count();
-        return countPromise;
+        return element.all(by.css('.list-card')).then(function(arr) {
+            expect(arr).toBeDefined()
+            return arr.length
+        });
     }
 
     getListedTeamsCount():any{
         this.page.navigateTo('/app/teams');
-        let countPromise = element.all(by.css('.list-card')).count();
-        browser.sleep(2000);
-        return countPromise;
+        return element.all(by.css('.list-card')).then(function(arr) {
+            expect(arr).toBeDefined()
+            return arr.length
+        });
     }
 
     listTeam(){
@@ -150,7 +146,4 @@ export class Team {
         expect(element(by.id('btnListTeam')).isPresent()).toBeTruthy();
         element(by.id('btnListTeam')).click();
     }
-
-
-
 }

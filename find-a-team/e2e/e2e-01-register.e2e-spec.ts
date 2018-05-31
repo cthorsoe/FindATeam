@@ -28,7 +28,7 @@ describe('Register user and login', () => {
 
     // USED TO LOGIN WITH PREEXISTING USER, AND NOT CREATE A NEW ONE
     /* it('Perform predefined login', async() => { 
-        login.logIn('e2etest1527686649185', 'password', true);
+        login.logIn('vexityy', '1234', true);
     }); */
 });
  

@@ -10,8 +10,7 @@ describe('Create team', () => {
     });
 
     it('4.0: Get current listed teams count', async() => {
-        let countPromise = team.getListedTeamsCount();
-        countPromise.then(function(count){
+        team.getListedTeamsCount().then(function _resolvePromiseOfCall(count){
             teamsCountStart = count;
         });
     });
@@ -25,8 +24,7 @@ describe('Create team', () => {
     });
 
     it('4.3: Get listed teams count after and check if it increased by one', async() => {
-        let countPromise = team.getListedTeamsCount();
-        countPromise.then(function(count){
+        team.getListedTeamsCount().then(function _resolvePromiseOfCall(count){
             expect((teamsCountStart + 1)).toEqual(count);
         });
     });

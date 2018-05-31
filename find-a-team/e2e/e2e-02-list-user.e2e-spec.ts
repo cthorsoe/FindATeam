@@ -10,8 +10,7 @@ describe('List user', () => {
     });
     
     it('2.0: Get current listed user count', async() => {
-        let countPromise = user.getListedUserCount();
-        countPromise.then(function(count){
+        user.getListedUserCount().then(function _resolvePromiseOfCall(count){
             usersCountStart = count;
         });
     });
@@ -25,8 +24,7 @@ describe('List user', () => {
     });
 
     it('2.3: Get listed user count after and check if it increased by one', async() => {
-        let countPromise = user.getListedUserCount();
-        countPromise.then(function(count){
+        user.getListedUserCount().then(function _resolvePromiseOfCall(count){
             expect((usersCountStart + 1)).toEqual(count);
         });
     });

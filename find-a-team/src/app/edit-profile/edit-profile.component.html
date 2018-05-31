@@ -30,6 +30,9 @@
           <div class="alert text-center alert-danger my-0" role="alert" *ngIf="editUserForm.controls.dateofbirth.errors?.required && editUserForm.controls.dateofbirth.touched">
               You must fill out your date of birth
           </div>
+          <div class="alert text-center alert-danger my-0" role="alert" *ngIf="editUserForm.controls.dateofbirth.errors?.invalidDate">
+            The minimum age on this website is 10 years old
+        </div>
           <input type="date" id="txtEditDate" formControlName="dateofbirth" class="form-control" placeholder="Date of birth">
 
           <label for="txtEditPlayerrole" class="sr-only">Role</label>

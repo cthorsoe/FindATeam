@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { DateOfBirthValidator } from '../validators/DateOfBirthValidator';
 import { UsersEpic } from '../redux/users.epic';
-import { UsersActions } from '../redux/users.actions';
+import { UsersActions } from '../redux/users.actions'
 import { Player } from '../entities/player';
 import { Router } from '@angular/router';
 
@@ -18,13 +19,17 @@ export class RegisterComponent implements OnInit {
     
     createForm() {
       this.registerUserForm = this.fb.group({
-          firstname: ['', Validators.required],
-          lastname: ['', Validators.required],
-          username: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
-          dateofbirth: ['', Validators.required],
-          password: ['', Validators.required],
-          passwordConfirm: ['', Validators.required],
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
+            username: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            dateofbirth: ['', Validators.compose([
+                    Validators.required,
+                    DateOfBirthValidator.getDateOfBirthValidator()
+                ])
+            ],
+            password: ['', Validators.required],
+            passwordConfirm: ['', Validators.required],
         });
     }
 
