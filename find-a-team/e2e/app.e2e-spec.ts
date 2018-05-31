@@ -1,14 +1,15 @@
 import { AppPage } from './app.po';
+import { browser} from 'protractor';
 
-describe('find-a-team App', () => {
-  let page: AppPage;
+describe('Find-A-Team End-to-end Test!', () => {
+    let page: AppPage;
 
-  beforeEach(() => {
-    page = new AppPage();
-  });
+    beforeEach(() => {
+        page = new AppPage();
+    });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
-  });
+    it('Allow test runner to have some time to open test website', () => {
+        page.navigateTo('/app')
+        browser.sleep(5000);
+    });
 });

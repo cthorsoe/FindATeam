@@ -14,19 +14,19 @@
           </a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/app/teams">Teams</a>
+          <a id="navLinkTeams" class="nav-link" routerLinkActive="active" routerLink="/app/teams">Teams</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/app/players">Players</a>
+          <a id="navLinkPlayers" class="nav-link" routerLinkActive="active" routerLink="/app/players">Players</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/app/list-player">List yourself</a>
+          <a id="navLinkListPlayer" class="nav-link" routerLinkActive="active" routerLink="/app/list-player">List yourself</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/app/list-team">List your team</a>
+          <a id="navLinkListTeam" class="nav-link" routerLinkActive="active" routerLink="/app/list-team">List your team</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/app/my-teams">
+          <a  id="navLinkMyTeams" class="nav-link" routerLinkActive="active" routerLink="/app/my-teams">
             My teams
             <div class="badge badge-secondary team-invites">{{ teamInvites }} invite<span *ngIf="teamInvites != 1">s</span>
             </div>
@@ -35,15 +35,15 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" *ngIf="!isLoggedIn">
-          <a class="nav-link" routerLinkActive="active" routerLink="./login">Login</a>
+          <a id="navLinkLogin" class="nav-link" routerLinkActive="active" routerLink="./login">Login</a>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn;else dropdownDiv">
-          <a class="nav-link" routerLinkActive="active" routerLink="./register">Register</a>
+          <a id="navLinkRegister" class="nav-link" routerLinkActive="active" routerLink="./register">Register</a>
         </li>
         <ng-template #dropdownDiv>
 
             <li class="nav-item" *ngIf="isAdmin">
-                <a class="nav-link" routerLinkActive="active" routerLink="/admin/">Admin</a>
+                <a id="navLinkAdmin"class="nav-link" routerLinkActive="active" routerLink="/admin/">Admin</a>
             </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -60,7 +60,7 @@
               </a>
               <a class="dropdown-item" routerLink="/app/edit-profile">Edit Profile</a>
               <!-- <a class="dropdown-item">{{ teamInvites }}</a> -->
-              <a class="dropdown-item" (click)="userLogout()">Logout</a>
+              <a id="navLinkLogout" class="dropdown-item" (click)="userLogout()">Logout</a>
             </div>
           </li>
         </ng-template>
