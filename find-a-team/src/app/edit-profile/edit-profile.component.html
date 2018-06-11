@@ -33,19 +33,23 @@
           <div class="alert text-center alert-danger my-0" role="alert" *ngIf="editUserForm.controls.dateofbirth.errors?.invalidDate">
             The minimum age on this website is 10 years old
         </div>
-          <input type="date" id="txtEditDate" formControlName="dateofbirth" class="form-control" placeholder="Date of birth">
+            <input type="date" id="txtEditDate" formControlName="dateofbirth" class="form-control" placeholder="Date of birth">
 
-          <label for="txtEditPlayerrole" class="sr-only">Role</label>
-          <input type="text" id="txtEditPlayerrole" formControlName="playerrole" class="form-control" placeholder="Player role">
+            <label for="txtEditPlayerrole" class="sr-only">Role</label>
+            <input type="text" id="txtEditPlayerrole" formControlName="playerrole" class="form-control" placeholder="Player role">
 
-          <label for="txtEditPhone" class="sr-only">Phone</label>
-          <input type="text" id="txtEditPhone" formControlName="phone" class="form-control" placeholder="Phone (hidden)">
+            <label for="txtEditPhone" class="sr-only">Phone</label>
+            <input type="text" id="txtEditPhone" formControlName="phone" class="form-control" placeholder="Phone (hidden)">
 
-          <label for="txtEditDescription" class="sr-only">Description</label>
-          <textarea id="txtEditDescription" formControlName="description" class="form-control" placeholder="Description"></textarea>
+            <label for="txtEditDescription" class="sr-only">Description</label>
+            <textarea id="txtEditDescription" formControlName="description" class="form-control" placeholder="Description"></textarea>
 
-          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="editUserForm.invalid">Edit Profile</button>
-          <p>All good? <a class="regular-link" routerLink="../profile/{{user.username}}">Click here to see your profile.</a></p>
+            <h6 class="text-center">Avatar</h6>
+            <label for="txtEditAvatar" class="sr-only">Avatar</label>
+            <input type="file" id="txtEditAvatar" (change)="onFileChange($event)" class="form-control">
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="editUserForm.invalid">Edit Profile</button>
+            <p>All good? <a class="regular-link" routerLink="../profile/{{user.username}}">Click here to see your profile.</a></p>
         </form>
   </div>
 </div>

@@ -13,7 +13,7 @@ import { IAppState } from '../store/store';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
     username:String;
-    user:User = new User();
+    user:User;
     routeSubscription;
     subscription;
   constructor(private route: ActivatedRoute, private usersActions:UsersActions, private ngRedux:NgRedux<IAppState>) {}

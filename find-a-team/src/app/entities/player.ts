@@ -8,5 +8,4 @@ export class Player {
     public playerrole?:String;
     public avatar?:String;
     public phone?:String;
-
 }

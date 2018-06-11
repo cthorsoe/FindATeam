@@ -6,20 +6,25 @@
   </div> -->
   <div class="card-body">
     <div class="row my-4">
-      <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 text-sm-right text-lg-left ">
-        <img class="card-img-top img-fluid rounded-circle" src="assets/images/unknown.png" alt="Card image cap">
-      </div>
-      <div class="col-12 col-md-8 col-ld-9 col-xl-10">
-        <h5 class="card-title">{{ user.username }}</h5>
-        <p>{{user.firstname}} {{user.lastname}}</p>
-        <p class="text-muted text-small">{{ user.dateofbirth | age }}</p>
-        <p *ngIf="user.playerrole" class="text-muted text-small">Role: {{ user.playerrole }}</p>
-        <hr>
-        <div *ngIf="user.description" class="text-muted">
-          <!-- <strong>Description:</strong><br> -->
-          {{ user.description }}
+        <div *ngIf="!user; else userProfile">
+            Loading...
         </div>
-      </div>
+        <ng-template #userProfile>
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 text-sm-right text-lg-left ">
+              <img class="card-img-top img-fluid rounded-circle" src="http://localhost:3333/users/avatar/{{user.username}}" alt="Card image cap">
+            </div>
+            <div class="col-12 col-md-8 col-ld-9 col-xl-10">
+              <h5 class="card-title">{{ user.username }}</h5>
+              <p>{{user.firstname}} {{user.lastname}}</p>
+              <p class="text-muted text-small">{{ user.dateofbirth | age }}</p>
+              <p *ngIf="user.playerrole" class="text-muted text-small">Role: {{ user.playerrole }}</p>
+              <hr>
+              <div *ngIf="user.description" class="text-muted">
+                <!-- <strong>Description:</strong><br> -->
+                {{ user.description }}
+              </div>
+            </div>
+        </ng-template>
     </div>
     
     <!-- <p *ngIf="{{user.playerrole != undefined}}" class="text-muted">Role: {{ user.playerrole }}</p> -->

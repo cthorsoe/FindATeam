@@ -18,10 +18,11 @@
       <p *ngIf="player === -1;else playerCard">No matching players found.</p>
       <ng-template #playerCard>
         <div class="card list-card mb-4">
-          <img *ngIf="player.avatar;else unknownAvatar" class="card-img-top" src="{{player.avatar}}" alt="{{player.username}} avatar" />
+          <img class="card-img-top" src="http://localhost:3333/users/avatar/{{player.username}}" alt="{{player.username}} avatar" />
+          <!-- <img *ngIf="player.avatar;else unknownAvatar" class="card-img-top" src="{{player.avatar}}" alt="{{player.username}} avatar" />
           <ng-template #unknownAvatar>
               <img class="card-img-top" src="assets/images/unknown.png" alt="{{player.username}} avatar" />
-          </ng-template>
+          </ng-template> -->
           <div class="card-body">
             <h5 class="card-title">{{ player.username }}</h5>
             <p>{{player.firstname}} {{player.lastname}}</p>
