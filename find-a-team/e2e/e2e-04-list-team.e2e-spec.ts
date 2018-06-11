@@ -1,7 +1,7 @@
 import { AppPage, Login, User, Team } from './app.po';
 import { browser, by, element } from 'protractor';
 
-describe('Create team', () => {
+describe('List team', () => {
     let page: AppPage = new AppPage();
     let team:Team = new Team();
     let teamsCountStart:number = undefined;

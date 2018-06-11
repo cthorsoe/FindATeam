@@ -109,3 +109,18 @@ describe('List yourself and unlist afterwards', () => {
         expect(newState).toEqual(afterState);
     });
 });
+
+
+
+
+
+/* 
+describe('DEEP FREEZE TEST', () => {
+    let initialState =  UsersService.getInitialUsersState();
+    deepFreeze(initialState);
+    it('Deepfreezed item should not be changable', () => {
+        initialState.loggedIn = {value:'this value has been changed'};
+        expect(initialState.loggedIn).toEqual({value:'this value has been changed'})
+    });
+});
+ */

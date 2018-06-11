@@ -4,6 +4,7 @@ import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../store/store';
 import { TeamsActions } from '../redux/teams.actions';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-team',
@@ -15,7 +16,7 @@ export class ListTeamComponent implements OnInit, OnDestroy {
   teamList:Team[];
   selectedTeam:Team;
   subscription;
-  constructor(private ngRedux: NgRedux<IAppState>, private fb: FormBuilder, private teamsActions:TeamsActions ) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private fb: FormBuilder, private teamsActions:TeamsActions, private router:Router) { }
 
   ngOnInit() {
     this.subscription = this.ngRedux.select(state => state).subscribe(data => {
@@ -30,6 +31,7 @@ export class ListTeamComponent implements OnInit, OnDestroy {
   listTeam(){
     console.log(this.selectedTeam)
     this.teamsActions.listTeam(this.selectedTeam);
+    this.router.navigate(['app/teams']);
   }
   onTeamChanged(event:Event, team:Team){
     console.log('change');

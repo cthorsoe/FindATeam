@@ -27,21 +27,7 @@ export class LoginComponent implements OnInit {
   }
   loginFormSubmit(loginForm:FormGroup, event:Event){
     if(loginForm.valid){
-      this.usersActions.userLogin(loginForm.value); // HVORDAN KAN JEG VIDE AT DEN HER ER FÆRDIG MED ALT DEN SKAL GØRE?
-      // IF LOGIN WAS SUCCESS...
-      // this.teamsActions.getMyTeams(loginForm.value.username);
-      // this.usersActions.getTeamInvites(loginForm.value.username);
-      // this.authService.login();
-      // END IF.
-
-      // FØLGENDE KODE SKULLE KØRES NÅR SUCCESS_LOGIN ER KØRT I REDUCEREN.
-      // if(this.authService.redirectUrl != undefined && this.authService.redirectUrl != "/portal/logout"){
-      //   this.router.navigate([this.authService.redirectUrl]);
-      // }else{
-      //     // this.router.navigate(['portal']);
-      // }
-      
-      // this.router.navigate(['app/home']);
+      this.usersActions.userLogin(loginForm.value);
       console.log('valid');
    }else{
       console.log('invalid');

@@ -21,6 +21,7 @@ export class UsersState {
   user: User;
   selectedUser: User;
   listedUsers: Player[];
+  failedAutoLogin: boolean;
 }
 export class TeamsState {
   teams: Team[];

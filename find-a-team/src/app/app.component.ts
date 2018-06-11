@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit  {
   userSubscription;
   loggedInSubscription;
+  failedAutoLoginSubscription;
   loggedInSubscriptionHit:boolean = false;
   constructor (private ngRedux:NgRedux<IAppState>, private usersActions: UsersActions, private teamsActions: TeamsActions, private authService:AuthService, private router:Router){
 
@@ -25,7 +26,6 @@ export class AppComponent implements OnInit  {
         if(user && user != undefined){
             this.teamsActions.getMyTeams(user.username);
             this.usersActions.getTeamInvites(user.username);
-        
         }
     });
     this.loggedInSubscription = this.ngRedux.select(state => state.users.loggedIn).subscribe(loggedIn => {
@@ -38,8 +38,10 @@ export class AppComponent implements OnInit  {
                 }
                 this.authService.login(isAdmin);
                 
-                if(loggedIn.loggedInWithForm){
-                    this.router.navigate(['app/home'])
+                if(this.authService.redirectUrl != undefined){
+                    this.router.navigate([this.authService.redirectUrl]);
+                }else if(this.router.url.indexOf('app/login') > -1){
+                    this.router.navigate(['app/home']);
                 }
             }else{
                 this.authService.logout();
@@ -52,9 +54,13 @@ export class AppComponent implements OnInit  {
     });
     // console.log(localStorage.tuLoginSession, localStorage.tuLoginSessionId)
     if(localStorage.tuLoginSession && localStorage.tuLoginSessionId){
-      console.log('LOGGING IN BY SESSION')
-      this.usersActions.loginBySession(localStorage.tuLoginSession, localStorage.tuLoginSessionId);
-
+        this.loggedInSubscription = this.ngRedux.select(state => state.users.failedAutoLogin).subscribe(failedAutoLogin => {
+            if(failedAutoLogin){
+                this.authService.failedSessionLogin();
+            }
+        });
+        console.log('LOGGING IN BY SESSION')
+        this.usersActions.loginBySession(localStorage.tuLoginSession, localStorage.tuLoginSessionId);
     }
  }
 }

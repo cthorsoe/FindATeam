@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
     registerUserFormSubmit(registerUserForm:FormGroup, event:Event){
         console.log('submit', registerUserForm, registerUserForm.invalid)
         console.log(JSON.stringify(registerUserForm.value));
-        let user:Player = registerUserForm.value as Player; 
+        let user:Player = registerUserForm.value as Player;
         this.usersActions.createUser(user);
         this.router.navigate(['/app/login/']);
     }

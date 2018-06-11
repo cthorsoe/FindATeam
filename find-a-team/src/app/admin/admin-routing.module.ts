@@ -7,12 +7,12 @@ import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
     { path: '', component: AdminComponent,
-      children: [
+        children: [
             { path: '', component: DashboardComponent},
             { path: 'dashboard', component: DashboardComponent },
             { path: 'manage-teams', component: ManageTeamsComponent },
             { path: 'manage-players', component: ManagePlayersComponent }
-          ],
+        ],
     },
 ];
 

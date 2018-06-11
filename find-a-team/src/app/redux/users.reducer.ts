@@ -8,7 +8,6 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 const INITIAL_STATE: UsersState = UsersService.getInitialUsersState();
-let authService:AuthService = new AuthService();
 
 export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
   let newUsersArray;
@@ -19,7 +18,7 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
     case UsersActions.LOGIN: // action.payload: empty
       return state;
 
-    case UsersActions.SUCCESS_LOGIN: // action.payload: Player[]
+    case UsersActions.SUCCESS_LOGIN: // action.payload: Player
         console.log('PAYLOAD', action.payload);
         localStorage.tuLoginSession = action.payload.session;
         localStorage.tuLoginSessionId = action.payload.sessionId;
@@ -56,16 +55,16 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
         return state;
 
     case UsersActions.SUCCESS_LOGIN_BY_SESSION: // action.payload: Player[]
-      console.log('PAYLOAD', action.payload);
+        console.log('PAYLOAD', action.payload);
         if(action.payload.role == "admin"){
             action.payload.isAdmin = true;
         }
-      return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: false, userRole: action.payload.role}})
-      // return state;
-
-    case UsersActions.FAILED_LOGIN_BY_SESSION: // action.payload: empty
-      authService.failedSessionLogin()
-      return state;
+        return tassign(state, {user: action.payload, loggedIn: {loggedIn: true, loggedInWithForm: false, userRole: action.payload.role}})
+        // return state;
+      
+      case UsersActions.FAILED_LOGIN_BY_SESSION: // action.payload: empty
+      return tassign(state, {failedAutoLogin: true})
+    //   return state;
     /* ------------------------------------ LOGIN BY SESSION END ------------------------------------ */
 
     /* ------------------------------------ GET SPECIFIC USER BEGIN ------------------------------------ */

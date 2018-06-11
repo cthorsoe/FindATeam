@@ -102,7 +102,7 @@ export class UsersActions {
     });
   }
 
-  loginBySession(sessionSalt, sessionId): void{ // {username, password}
+  loginBySession(sessionSalt, sessionId): void{
     // console.log('creating user');
     this.ngRedux.dispatch({
        type: UsersActions.LOGIN_BY_SESSION,

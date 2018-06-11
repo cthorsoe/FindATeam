@@ -27,6 +27,7 @@ export class Login {
         });
        browser.sleep(2000);
     }
+
     logOut(){
         expect(element(by.id('navbarDropdown')).isPresent()).toBeTruthy();
         element(by.id('navbarDropdown')).click().then(() => {
@@ -40,11 +41,12 @@ export class Login {
 
 export class Register {
     navigateToRegisterPage(){
-        expect(element(by.id('navLinkLogin')).isPresent()).toBeTruthy();
+        expect(element(by.id('navLinkRegister')).isPresent()).toBeTruthy();
         element(by.id('navLinkRegister')).click().then(() => {
             expect(browser.getCurrentUrl()).toContain('/app/register');
         });
     }
+    
     registerUser(username:string, password:string){
         element(by.id('txtRegisterFirstName')).sendKeys('firstname');
         element(by.id('txtRegisterLastName')).sendKeys('lastname');
@@ -81,6 +83,7 @@ export class User{
 
     getListedUserCount(){
         this.page.navigateTo('/app/players');
+        browser.sleep(2000);
         expect(browser.getCurrentUrl()).toContain('/app/players');
         return element.all(by.css('.list-card')).then(function(arr) {
             expect(arr).toBeDefined()

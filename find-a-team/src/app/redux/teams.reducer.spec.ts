@@ -1,4 +1,4 @@
-var deepFreeze = require('deep-freeze');
+/* var deepFreeze = require('deep-freeze');
 import { usersReducer } from './users.reducer';
 import * as types from './users.actions';
 import { UsersService } from './users.service';
@@ -49,4 +49,4 @@ describe('register reducer', () => {
   //     expect(newState.babies.length).toEqual(1);
   //     expect(newState).toEqual(afterState);
   //  });
-});
+}); */
