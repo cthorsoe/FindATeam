@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Action } from './entities/action';
 import { Event } from './entities/event';
 import { SocketService } from './services/socket.service';
+import { Invite } from './entities/invite';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy  {
         this.userSubscription = this.ngRedux.select(state => state.users.user).subscribe(user => {
             if(user && user != undefined){
                 this.teamsActions.getMyTeams(user.username);
-                this.usersActions.getTeamInvites(user.username);
+                this.teamsActions.getTeamInvites(user.username);
                 this.userId = user.id;
             }
         });
@@ -66,8 +67,11 @@ export class AppComponent implements OnInit, OnDestroy  {
         console.log('creating io connection')
         this.ioConnection = this.socketService.getInvites().subscribe(invite => {
             console.log('subscription hit')
-            if(invite && invite["userId"] == this.userId){
-                this.usersActions.addInvite();
+            console.log('INVITE', invite);
+            if(invite && invite['user'].id == this.userId){
+                
+                console.log('USER IS A MATCH')
+                this.teamsActions.addInvite(invite as Invite);
             }
         })
     }

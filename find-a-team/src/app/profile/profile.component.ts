@@ -7,6 +7,7 @@ import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../store/store';
 import { SocketService } from '../services/socket.service';
 import { Team } from '../entities/team';
+import { Invite } from '../entities/invite';
 
 @Component({
   selector: 'app-profile',
@@ -47,7 +48,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
     inviteUser(){
-        this.socketService.invite({userId:this.user.id, teamId:this.selectedTeam.id})
+        this.socketService.invite({user:this.user, team:this.selectedTeam} as Invite)
     }
     // isUserInTeam(team:Team) {
     //     console.log('isUserInTeam')

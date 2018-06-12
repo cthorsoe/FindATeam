@@ -4,6 +4,7 @@ import { Player } from '../entities/player';
 import { UsersState } from '../store/store';
 import { Team } from '../entities/team';
 import { User } from '../entities/user';
+import { Invite } from '../entities/invite';
 
 
 @Injectable()
@@ -32,9 +33,6 @@ export class UsersService {
     getUsers(){
         return this.http.get(this.webserviceUrl + 'users/get-listed-users');
     }
-    getTeamInvites(username:string){
-      return this.http.get(this.webserviceUrl + 'users/get-team-invites-count/' + username);
-    }
 
     deleteUser(id:String){
       // return this.http.delete('http://angular2api2.azurewebsites.net/api/internships/' + id, {responseType: 'text'});
@@ -55,10 +53,22 @@ export class UsersService {
     listUser(user:User){
       return this.http.post(this.webserviceUrl + 'users/list-user', user, {responseType: 'text'});
     }
+    /* getTeamInvites(username:string){
+        console.log('get team invites username', username)
+    //   return this.http.get(this.webserviceUrl + 'users/get-team-invites-count/' + username);
+      return this.http.get(this.webserviceUrl + 'users/get-team-invites/' + username);
+    }
+
+    acceptInvite(invite:any){
+        console.log('invite', invite);
+        return this.http.post(this.webserviceUrl + 'users/accept-team-invite', invite, {responseType: 'text'});
+    } */
+
+    
 
 
    static getInitialUsersState() : UsersState{
-    return { teamInvites: 0, loggedIn:{loggedIn: false, loggedInWithForm: false, userRole: "Guest"}, user: undefined, selectedUser: undefined, invitableTeams: [], listedUsers:[]};
+    return { /* teamInvites: [], */ loggedIn:{loggedIn: false, loggedInWithForm: false, userRole: "Guest"}, user: undefined, selectedUser: undefined, invitableTeams: [], listedUsers:[]};
    }
 
 

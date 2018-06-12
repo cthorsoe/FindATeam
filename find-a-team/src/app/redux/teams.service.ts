@@ -45,7 +45,18 @@ export class TeamsService {
         return this.http.post(this.webserviceUrl + 'teams/list-team', {id: id});
     }
 
+    getTeamInvites(username:string){
+        console.log('get team invites username', username)
+    //   return this.http.get(this.webserviceUrl + 'users/get-team-invites-count/' + username);
+      return this.http.get(this.webserviceUrl + 'users/get-team-invites/' + username);
+    }
+
+    acceptInvite(invite:any){
+        console.log('invite', invite);
+        return this.http.post(this.webserviceUrl + 'users/accept-team-invite', invite, {responseType: 'text'});
+    }
+
    static getInitialTeamsState() : TeamsState{
-      return {teams: [], selectedTeam: undefined, listedTeams: [] };
+      return {teamInvites: [], teams: [], selectedTeam: undefined, listedTeams: [] };
    }
 }

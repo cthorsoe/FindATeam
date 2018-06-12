@@ -48,22 +48,6 @@ export class UsersEpic implements OnInit {
       });
    }
 
-   getTeamInvites = (action$: ActionsObservable<any>) => {
-    return action$.ofType(UsersActions.GET_TEAM_INVITES) // Listen for this action
-      .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
-          return this.usersService.getTeamInvites(payload)
-            .map((result:any[]) => ({ // when web service responds with success, call this action with payload that came back from webservice
-              type: UsersActions.SUCCESS_GET_TEAM_INVITES,
-              payload: result
-            })
-          )
-            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
-              type: UsersActions.FAILED_GET_TEAM_INVITES,
-              payload: error
-          }));
-    });
- }
-
   userLogin = (action$: ActionsObservable<any>) => {
     return action$.ofType(UsersActions.LOGIN) // Listen for this action
       .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
@@ -155,20 +139,50 @@ export class UsersEpic implements OnInit {
       });
    }
 
-   listUser = (action$: ActionsObservable<any>) => {
-    return action$.ofType(UsersActions.LIST_USER) // Listen for this action
-      .mergeMap(({payload: user}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
-          return this.usersService.listUser(user)
-            .map((result:String) => ({ // when web service responds with success, call this action with payload that came back from webservice
-              type: UsersActions.SUCCESS_LIST_USER,
-              payload: user
-            }))
-            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
-              type: UsersActions.FAILED_LIST_USER,
-              payload: error
-          }));
-    });
- }
+    listUser = (action$: ActionsObservable<any>) => {
+        return action$.ofType(UsersActions.LIST_USER) // Listen for this action
+        .mergeMap(({payload: user}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+            return this.usersService.listUser(user)
+                .map((result:String) => ({ // when web service responds with success, call this action with payload that came back from webservice
+                type: UsersActions.SUCCESS_LIST_USER,
+                payload: user
+                }))
+                .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+                type: UsersActions.FAILED_LIST_USER,
+                payload: error
+            }));
+        });
+    }
+
+    /* getTeamInvites = (action$: ActionsObservable<any>) => {
+        return action$.ofType(UsersActions.GET_TEAM_INVITES) // Listen for this action
+          .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+              return this.usersService.getTeamInvites(payload)
+                .map((result:any[]) => ({ // when web service responds with success, call this action with payload that came back from webservice
+                  type: UsersActions.SUCCESS_GET_TEAM_INVITES,
+                  payload: result
+                })
+              )
+                .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+                  type: UsersActions.FAILED_GET_TEAM_INVITES,
+                  payload: error
+              }));
+        });
+    }
+    acceptInvite = (action$: ActionsObservable<any>) => {
+        return action$.ofType(UsersActions.ACCEPT_INVITE) // Listen for this action
+        .mergeMap(({payload: team}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+            return this.usersService.acceptInvite(team)
+                .map((result:String) => ({ // when web service responds with success, call this action with payload that came back from webservice
+                    type: UsersActions.SUCCESS_ACCEPT_INVITE,
+                    payload: team
+                }))
+                .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+                    type: UsersActions.FAILED_ACCEPT_INVITE,
+                    payload: error
+            }));
+        });
+    } */
 }
 
 

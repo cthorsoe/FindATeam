@@ -3,6 +3,7 @@ import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../store/store';
 import { Player } from '../entities/player';
 import { Team } from '../entities/team';
+import { Invite } from '../entities/invite';
 
 @Injectable()
 export class TeamsActions {
@@ -38,6 +39,18 @@ export class TeamsActions {
    static LIST_TEAM: string = 'LIST_TEAM';
    static SUCCESS_LIST_TEAM: string = 'SUCCESS_LIST_TEAM';
    static FAILED_LIST_TEAM: string = 'FAILED_LIST_TEAM';
+
+   static ACCEPT_INVITE: string = 'ACCEPT_INVITE';
+   static SUCCESS_ACCEPT_INVITE: string = 'SUCCESS_ACCEPT_INVITE';
+   static FAILED_ACCEPT_INVITE: string = 'FAILED_ACCEPT_INVITE';
+
+    static GET_TEAM_INVITES: string = 'GET_TEAM_INVITES';
+    static SUCCESS_GET_TEAM_INVITES: string = 'SUCCESS_GET_TEAM_INVITES';
+    static FAILED_GET_TEAM_INVITES: string = 'FAILED_GET_TEAM_INVITES';
+    
+    static ADD_INVITE: string = 'ADD_INVITE';
+
+    static ADD_USER_TO_TEAM: string = 'ADD_USER_TO_TEAM';
 
   getSpecificTeam(name:String){
     this.ngRedux.dispatch({
@@ -84,9 +97,35 @@ export class TeamsActions {
   }
 
   listTeam(team: Team): void{
+    
     this.ngRedux.dispatch({
-      type: TeamsActions.LIST_TEAM,
-      payload: team
-   });
+        type: TeamsActions.LIST_TEAM,
+        payload: team
+    });
   }
+
+  getTeamInvites(username: String) {
+    this.ngRedux.dispatch({
+      type: TeamsActions.GET_TEAM_INVITES,
+      payload: username
+    });
+  }
+  acceptInvite(invite: any): void {
+    this.ngRedux.dispatch({
+        type: TeamsActions.ACCEPT_INVITE,
+        payload: invite
+    });
+  }
+  addInvite(invite:Invite){
+    this.ngRedux.dispatch({
+        type: TeamsActions.ADD_INVITE,
+        payload: invite
+    });
+  }
+  addUserToTeam(data): void {
+    this.ngRedux.dispatch({
+        type: TeamsActions.ADD_USER_TO_TEAM,
+        payload: data
+    });
+}
 }
