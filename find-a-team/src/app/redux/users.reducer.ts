@@ -13,6 +13,7 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
   let newUsersArray;
   let index;
   let newState;
+  let newTeam;
   switch (action.type) {
     /* ------------------------------------ USER LOGIN BEGIN ------------------------------------ */
     case UsersActions.LOGIN: // action.payload: empty
@@ -91,19 +92,6 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
       return state;
     /* ------------------------------------ GET USERS END ------------------------------------ */
 
-    /* ------------------------------------ GET TEAM INVITES BEGIN ------------------------------------ */
-    case UsersActions.GET_TEAM_INVITES: // action.payload: empty
-      return state;
-
-    case UsersActions.SUCCESS_GET_TEAM_INVITES: // action.payload: Player[]
-      console.log('PAYLOAD', action.payload);
-      console.log(action.payload);
-      return tassign(state, {teamInvites: action.payload.invites})
-
-    case UsersActions.FAILED_GET_TEAM_INVITES: // action.payload: empty
-      return state;
-    /* ------------------------------------ GET TEAM INVITES END ------------------------------------ */
-
     /* ------------------------------------ CREATE USER BEGIN ------------------------------------ */
     case UsersActions.CREATE_USER: // action.payload: empty
     return state;
@@ -179,6 +167,49 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
     case UsersActions.FAILED_LIST_USER: // action.payload: empty
       return state;
     /* ------------------------------------ CREATE USER END ------------------------------------ */
+
+     /* ------------------------------------ GET TEAM INVITES BEGIN ------------------------------------ */
+    /* case UsersActions.GET_TEAM_INVITES: // action.payload: empty
+    console.log('GET_TEAM_INVITES payload', action.payload)
+    return state;
+
+    case UsersActions.SUCCESS_GET_TEAM_INVITES: // action.payload: Player[]
+    console.log('SUCCESS_GET_TEAM_INVITES payload', action.payload)
+      console.log(action.payload);
+      return tassign(state, {teamInvites: action.payload})
+    //   return state
+
+    case UsersActions.FAILED_GET_TEAM_INVITES: // action.payload: empty
+      return state; */
+    /* ------------------------------------ GET TEAM INVITES END ------------------------------------ */
+
+
+    /* ------------------------------------ ACCEPT INVITE BEGIN ------------------------------------ */
+    /* case UsersActions.ACCEPT_INVITE: // action.payload: empty
+        return state
+    case UsersActions.SUCCESS_ACCEPT_INVITE: // action.payload: {teamId, userId}
+        newState = {};
+        newState.teamInvites = [...state.teamInvites];
+        index = newState.teamInvites.findIndex(x => x.id == action.payload.teamId);
+        console.log('INDEX', index)
+        if(index > -1){
+            newTeam = newState.teamInvites[index];
+            newTeam.members = [...newTeam.members, state.user]
+            newState.teamInvites.splice(index, 1);
+        }
+
+        return tassign(state, newState)
+    case UsersActions.FAILED_ACCEPT_INVITE: // action.payload: empty
+        return state */
+    /* ------------------------------------ ACCEPT INVITE END ------------------------------------ */
+
+    /* ------------------------------------ ADD INVITE BEGIN ------------------------------------ */
+    /* case UsersActions.ADD_INVITE: // action.payload: empty
+        console.log('ADD INVITE', action.payload)
+        return tassign(state, {teamInvites: [...state.teamInvites, action.payload.team]})
+        // return state; */
+    /* ------------------------------------ ADD INVITE END ------------------------------------ */
+
     default:
       return state;
  }

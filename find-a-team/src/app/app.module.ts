@@ -38,6 +38,7 @@ import { FilterTeamsPipe } from './pipes/filter-teams.pipe';
 // import { ManagePlayersComponent } from './admin/manage-players/manage-players.component';
 // import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
+import { SocketService } from './services/socket.service';
 
 
 @NgModule({
@@ -82,7 +83,6 @@ export class AppModule {
     const rootEpic = combineEpics(
       this.usersEpic.getSpecificUser,
       this.usersEpic.getUsers,
-      this.usersEpic.getTeamInvites,
       this.usersEpic.deleteUser,
       this.usersEpic.editUser,
       this.usersEpic.createUser,
@@ -90,6 +90,8 @@ export class AppModule {
       this.usersEpic.loginBySession,
       this.usersEpic.userLogout,
       this.usersEpic.listUser,
+      this.teamsEpic.getTeamInvites,
+      this.teamsEpic.acceptInvite,
       this.teamsEpic.getSpecificTeam,
       this.teamsEpic.getTeams,
       this.teamsEpic.getMyTeams,

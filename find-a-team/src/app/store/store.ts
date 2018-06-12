@@ -5,6 +5,7 @@ import { Team } from '../entities/team';
 import { usersReducer } from '../redux/users.reducer';
 import { teamsReducer } from '../redux/teams.reducer';
 import { User } from '../entities/user';
+import { Invite } from '../entities/invite';
 
 /* export class UsersState {
   teamInvites:number;
@@ -16,24 +17,26 @@ import { User } from '../entities/user';
 } */
 
 export class UsersState {
-  teamInvites:number;
-  loggedIn:any;
-  user: User;
-  selectedUser: User;
-  listedUsers: Player[];
-  failedAutoLogin: boolean;
+    //   teamInvites:number;
+    loggedIn:any;
+    user: User;
+    selectedUser: User;
+    invitableTeams: Team[];
+    listedUsers: Player[];
+    failedAutoLogin: boolean;
 }
 export class TeamsState {
-  teams: Team[];
-  selectedTeam: Team;
-  listedTeams: Team[];
+    teamInvites: Team[];
+    teams: Team[];
+    selectedTeam: Team;
+    listedTeams: Team[];
 }
 export class IAppState {
- users?: UsersState;
- teams?: TeamsState;
+    users?: UsersState;
+    teams?: TeamsState;
 }
 
 export const rootReducer = combineReducers<IAppState>({
-  users: usersReducer,
-  teams: teamsReducer
+    users: usersReducer,
+    teams: teamsReducer
 });

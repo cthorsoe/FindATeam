@@ -112,19 +112,48 @@ export class TeamsEpic implements OnInit {
    }
 
    listTeam = (action$: ActionsObservable<any>) => {
-    return action$.ofType(TeamsActions.LIST_TEAM) // Listen for this action
-      .mergeMap(({payload: user}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
-          return this.teamsService.listTeam(user.id)
-            .map((result:String) => ({ // when web service responds with success, call this action with payload that came back from webservice
-              type: TeamsActions.SUCCESS_LIST_TEAM,
-              payload: user
-            }))
-            .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
-              type: TeamsActions.FAILED_LIST_TEAM,
-              payload: error
-          }));
-    });
- }
+        return action$.ofType(TeamsActions.LIST_TEAM) // Listen for this action
+        .mergeMap(({payload: user}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+            return this.teamsService.listTeam(user.id)
+                .map((result:String) => ({ // when web service responds with success, call this action with payload that came back from webservice
+                    type: TeamsActions.SUCCESS_LIST_TEAM,
+                    payload: user
+                }))
+                .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+                    type: TeamsActions.FAILED_LIST_TEAM,
+                    payload: error
+            }));
+        });
+    }
+    getTeamInvites = (action$: ActionsObservable<any>) => {
+        return action$.ofType(TeamsActions.GET_TEAM_INVITES) // Listen for this action
+          .mergeMap(({payload}) => { // payload: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+              return this.teamsService.getTeamInvites(payload)
+                .map((result:any[]) => ({ // when web service responds with success, call this action with payload that came back from webservice
+                  type: TeamsActions.SUCCESS_GET_TEAM_INVITES,
+                  payload: result
+                })
+              )
+                .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+                  type: TeamsActions.FAILED_GET_TEAM_INVITES,
+                  payload: error
+              }));
+        });
+    }
+    acceptInvite = (action$: ActionsObservable<any>) => {
+        return action$.ofType(TeamsActions.ACCEPT_INVITE) // Listen for this action
+        .mergeMap(({payload: team}) => { // baby: (subject: Subject, date: Date): When this action is activated, call ws through service class or directly like below
+            return this.teamsService.acceptInvite(team)
+                .map((result:String) => ({ // when web service responds with success, call this action with payload that came back from webservice
+                    type: TeamsActions.SUCCESS_ACCEPT_INVITE,
+                    payload: team
+                }))
+                .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
+                    type: TeamsActions.FAILED_ACCEPT_INVITE,
+                    payload: error
+            }));
+        });
+    }
 }
 
 

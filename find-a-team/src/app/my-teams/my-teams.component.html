@@ -1,3 +1,31 @@
+<div class="row" *ngIf="invitedTeamList.length > 0">
+    <div class="col">
+        <h1>Team invites</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-xl-4" *ngFor="let team of invitedTeamList">
+        <div class="card list-card mb-4">
+            <img *ngIf="team.avatar;else unknownAvatar" class="card-img-top" src="{{team.avatar}}" alt="{{team.username}} avatar" />
+            <ng-template #unknownAvatar>
+                <img class="card-img-top" src="assets/images/unknown-team.png" alt="{{team.name}} avatar" />
+            </ng-template>
+            <div class="card-body">
+                <h5 class="card-title mb-2">{{ team.name }}</h5>
+                <p><strong>Current Roster:</strong></p>
+                <p class="text-muted" *ngFor="let member of team.members"><a class="regular-link" routerLink="/app/profile/{{member.username}}">{{member.firstname}} '<strong>{{member.username}}</strong>' {{member.lastname}}</a></p>
+                <div class="row mt-2">
+                    <div class="col">
+                        <a class="btn btn-success btn-block" (click)="acceptInvite(team.id)">Accept</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-danger btn-block" (click)="declineInvite(team.id)">Decline</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
   <div class="col">
      <h1>My teams <a id="btnLinkCreateTeam" class="btn btn-primary" routerLink="../create-team">Create team</a></h1>

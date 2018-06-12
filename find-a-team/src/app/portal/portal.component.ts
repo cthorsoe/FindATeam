@@ -5,6 +5,7 @@ import { UsersActions } from '../redux/users.actions';
 import { Player } from '../entities/player';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { TeamsActions } from '../redux/teams.actions';
 
 @Component({
   selector: 'app-portal',
@@ -12,18 +13,26 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./portal.component.scss']
 })
 export class PortalComponent implements OnInit, OnDestroy {
-  teamInvites:number;
-  isLoggedIn:boolean;
-  isAdmin:boolean;
-  user:Player;
-  subscription;
-  constructor(private ngRedux: NgRedux<IAppState>, private usersActions: UsersActions, private router: Router, private authService:AuthService) { }
+    
+    teamInvites:number;
+    isLoggedIn:boolean;
+    isAdmin:boolean;
+    user:Player;
+    usersSubscription;
+    teamsSubscription;
+    constructor(private ngRedux: NgRedux<IAppState>, private usersActions: UsersActions, private teamsActions: TeamsActions, private router: Router, private authService:AuthService) { }
 
   ngOnInit() {
-    this.subscription = this.ngRedux.select(state => state.users).subscribe(data => {
-      this.teamInvites = data.teamInvites;
-      if(data.user != undefined){
-        this.user = data.user; // DOESNT UPDATE DATABINDED HTML?
+    this.teamsSubscription = this.ngRedux.select(state => state.teams).subscribe(data => {
+        console.log('teamInvites', data.teamInvites);
+        if(this.teamInvites > data.teamInvites.length){
+    
+        }
+        this.teamInvites = data.teamInvites.length;
+    });
+    this.usersSubscription = this.ngRedux.select(state => state.users).subscribe(data => {
+        if(data.user != undefined){
+            this.user = data.user; // DOESNT UPDATE DATABINDED HTML?
         this.isLoggedIn = true;
         this.isAdmin = data.user.isAdmin
       }else{
@@ -33,9 +42,12 @@ export class PortalComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(){
-    if(this.subscription){
-      this.subscription.unsubscribe();
+    if(this.usersSubscription){
+      this.usersSubscription.unsubscribe();
     }
+    if(this.teamsSubscription){
+        this.teamsSubscription.unsubscribe();
+      }
   }
 
   userLogout(){
